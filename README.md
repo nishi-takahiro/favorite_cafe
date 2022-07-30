@@ -1,29 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
 # <favorite_cafe>
 
 ## サイト概要
@@ -45,7 +21,7 @@ Things you may want to cover:
 　カフェを探し、そのお店に行こうとするとき
 
 ## 設計書
-<...>
+
 
 ## 開発環境
 - OS：Linux(CentOS)

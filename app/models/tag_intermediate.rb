@@ -1,0 +1,2 @@
+class TagIntermediate < ApplicationRecord
+end
