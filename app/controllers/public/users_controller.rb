@@ -4,12 +4,22 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
+    @user = current_user
   end
-
-  def unsubscribe
+  
+  def create
   end
-
+  
+  def update
+  end
+  
   def index
+  end
+  
+  def confirmation
+  end
+  
+  def withdraw
   end
   
   private

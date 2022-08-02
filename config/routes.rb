@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   
   namespace :public do
     get 'users/my_page' => 'users#show'
+    get 'users/confirmation' => 'users#confirmation'
+    patch 'withdraw' => 'users#withdraw'
     resources :users
     resources :stores
     resources :articles
