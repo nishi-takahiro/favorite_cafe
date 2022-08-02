@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
   
-  namespace :admin do
-    get 'tags/index'
-    get 'tags/show'
-  end
+
     devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -19,6 +16,7 @@ Rails.application.routes.draw do
   end
   
   namespace :public do
+    get 'users/my_page' => 'users#show'
     resources :users
     resources :stores
     resources :articles
@@ -34,27 +32,4 @@ Rails.application.routes.draw do
     resources :tags
   end
   
-  namespace :public do
-    get 'articles/new'
-    get 'articles/show'
-    get 'articles/index'
-    get 'articles/edit'
-  end
-  namespace :public do
-    get 'stores/new'
-    get 'stores/edit'
-    get 'stores/index'
-    get 'stores/show'
-  end
-  namespace :public do
-    get 'users/show'
-    get 'users/edit'
-    get 'users/unsubscribe'
-    get 'users/index'
-  end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
-
 end

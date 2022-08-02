@@ -11,7 +11,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :last_name_kana
       t.string :first_name_kana
       t.boolean :is_deleted, default: false
-      t.string :user_image_id
+      t.string :profile_image_id
 
       ## Recoverable
       t.string   :reset_password_token

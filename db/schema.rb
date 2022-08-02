@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 2022_07_30_043313) do
     t.string "last_name_kana"
     t.string "first_name_kana"
     t.boolean "is_deleted", default: false
-    t.string "user_image_id"
+    t.string "profile_image_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
