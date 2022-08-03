@@ -25,6 +25,11 @@
                   <i class = "fas fa-home"></i>マイページ
                   <% end %>
                 </li>
+                 <li>
+                  <%= link_to new_public_store_path, class: "nav-link text-dark" do %>
+                  <i class = "fas fa-home"></i>店舗検索
+                  <% end %>
+                </li>
                 <li>
                   <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark" do %>
                   <i class = "fas fa-sign-out-alt"></i>ログアウト

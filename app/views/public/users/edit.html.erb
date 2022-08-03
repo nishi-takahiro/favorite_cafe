@@ -7,6 +7,18 @@
     <%= form_with model: @user, url: public_users_my_page_path, method: :patch do |f| %>
     <div class = "row">
         <div class = "col-sm-12 col-md-4 col-lg-2">
+            ユーザー画像
+        </div>
+        <div class = "col-sm-6 col-md-4 col-lg-3">
+            <div class = "form-group">
+                <div class = "field">
+                    <%= f.file_field :profile_image, accept: "image/*" %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class = "row">
+        <div class = "col-sm-12 col-md-4 col-lg-2">
             名前
         </div>
         <div class = "col-sm-6 col-md-4 col-lg-3">

@@ -4,6 +4,7 @@ class CreateArticles < ActiveRecord::Migration[6.1]
       t.integer :store_id
       t.integer :user_id
       t.integer :tag_intermediate
+      t.string :store_name
       t.string :store_image_id
       t.text :store_comment
       t.float :rate_delicious, null: false, default: 0

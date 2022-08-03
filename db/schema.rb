@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2022_07_30_043313) do
     t.integer "store_id"
     t.integer "user_id"
     t.integer "tag_intermediate"
+    t.string "store_name"
     t.string "store_image_id"
     t.text "store_comment"
     t.float "rate_delicious", default: 0.0, null: false

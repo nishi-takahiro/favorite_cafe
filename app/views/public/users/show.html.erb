@@ -1,7 +1,7 @@
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-sm-12 col-md-3 col-lg-3 m-1", style="background-color: #ffe4c4;">
+        <div class = "col-sm-12 col-md-2 col-lg-2 m-1", style="background-color: #ffe4c4;">
           <div class = "m-2 font-weight-bold">マイページ</div>
              <% if @user.profile_image.attached? %>
              <%= image_tag @user.profile_image, size: "100x100" %>
@@ -17,12 +17,16 @@
              
              <div class = "row">
                  <%= link_to edit_public_user_path(@user), class: "btn btn-success" do %>
-                 <i>プロフィーールを編集する</i>
+                 <i>プロフィールを編集する</i>
                  <% end %>
              </div>
         </div>
-        <div class = "col-sm-12 col-md-9 col-lg-9">
-            
+        <div class = "col-sm-12 col-md-8 col-lg-8">
+            <div class = "row">
+                <%= link_to new_public_article_path do%>
+                <i class = "fas fa-plus-circle fa-2x float-end", style = "color: #c0c0c0"></i>
+                <% end %>
+            </div>
         </div>
     </div>
 </div>

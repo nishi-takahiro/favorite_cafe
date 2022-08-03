@@ -1,2 +1,62 @@
-<h1>Public::Articles#new</h1>
-<p>Find me in app/views/public/articles/new.html.erb</p>
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold">
+        新規投稿
+        </div>
+    </div>
+    <%= form_with model: @article, url: public_articles_path, method: :post do |f| %>
+        <div class = "row ml-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3">
+                投稿画像
+            </div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                <%= f.file_field :store_image, accept: "image/*" %>
+            </div>
+        </div>
+        <div class = "row ml-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3">
+                お店の名前
+            </div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                <%= f.text_field :store_name %>
+            </div>
+        </div>
+        <div class = "row ml-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3">
+                美味しさ
+            </div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                rate_delicious
+            </div>
+        </div>
+        <div class = "row ml-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3">
+                雰囲気
+            </div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                rate_atmospher
+            </div>
+        </div>
+        <div class = "row ml-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3">
+                コストパフォーマンス
+            </div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                rate_cost
+            </div>
+        </div>
+        <div class = "row ml-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3">
+                紹介文
+            </div>
+            <div class = "col-sm-7 col-md-7 col-lg-7">
+                <%= f.text_area :store_comment , rows:'5', placeholder: "コメント", class: "form-control form-control-sm"%>
+            </div>
+        </div>
+        <%= f.submit "投稿する", class: "btn btn-success" %>
+    <% end %>
+
+ </div>
+</div>
+

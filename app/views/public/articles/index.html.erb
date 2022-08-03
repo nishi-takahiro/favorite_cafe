@@ -1,2 +1,23 @@
 <h1>Public::Articles#index</h1>
 <p>Find me in app/views/public/articles/index.html.erb</p>
+<div class = "container">
+    
+        <div class = "row">
+             <% @articles.each do |articles| %>
+                <div class = "col-sm-12 col-md-4 col-lg-3">
+                     <% if articles.store_image.attached? %>
+                       <%= image_tag articles.store_image, size: "200x200" %>
+                     <% else %>
+                       <%= image_tag "no_image.jpg", size: "200x200" %>
+                     <% end %>
+                     <div class = "col-sm-12 col-md-4 col-lg-3">
+                         <%= @articles.store_name %>
+                    </div>
+                     <div class = "col-sm-12 col-md-4 col-lg-3">
+                         <%= @articles.store_comment %>
+                    </div>
+                </div>
+            <% end %> 
+        </div>
+   
+</div>
