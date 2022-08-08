@@ -61,31 +61,25 @@
     <%= f.hidden_field :rate, id: :review_star %>
   </div>
 
-  <!-- リアルタイムプレビュー -->
-  <script type="text/javascript">
-    window.onload = function() {
-      new Vue({
-      el: '#editor',
-      data: {
-        input: '<%== j @article %>',
-      },
-      filters: {
-      marked: marked,
-      },
+ <div class="font-weight-bold">評価</div>
+      <div class="field mb-3" id="score">
+        <%= f.label :score, '評価' %>
+        <%= f.hidden_field :score, id: :review_score %>
+      </div>
+      <script>
+      $('#score').empty();
+      $('#score').raty({
+        size     : 36,
+        starOff:  '<%= asset_path('star-off.png') %>',
+        starOn : '<%= asset_path('star-on.png') %>',
+        starHalf: "<%= asset_path('star-half.png') %>",
+        scoreName: 'review[score]',
+        half: false,
       });
-    };
+      </script>
 
-   <!-- 評価 -->
-    $('#star').raty({
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      scoreName: 'note[rate]',
-      half: true,
-    });
-  </script>
-ポイントは下記  
+
+
    <div class = "row">
      <%= f.submit "投稿する", class: "btn btn-success" %>
      <% end %>
