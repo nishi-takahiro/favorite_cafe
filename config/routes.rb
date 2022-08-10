@@ -20,8 +20,9 @@ Rails.application.routes.draw do
     get 'users/confirmation' => 'users#confirmation'
     patch 'withdraw' => 'users#withdraw'
     resources :users
-    resources :stores
-    resources :articles
+    resources :stores do
+      resources :articles
+    end
   end
   
   namespace :admin do

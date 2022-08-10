@@ -2,36 +2,20 @@ class Public::StoresController < ApplicationController
   require 'net/http'
   require 'uri'
   require 'json'
-  def search
-    key = "9d0e3bd839c5a4d3"
-    lat = '35.658'
-    lng = '139.7016'
-    range = 1
-    api = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{key}&lat=#{lat}&lng=#{lng}&range=#{range}&order=1&format=json")
-    json = Net::HTTP.get(api)
-    @result = JSON.parse(json)    
-  end
+ 
 
   def new
-    key = "9d0e3bd839c5a4d3"
-    lat = '35.658'
-    lng = '139.7016'
-    range = 1
-    api = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{key}&lat=#{lat}&lng=#{lng}&range=#{range}&order=1&format=json")
-    json = Net::HTTP.get(api)
-    @result = JSON.parse(json)    
+   @store = Store.new
   end
 
   def edit
   end
 
   def index
-    key = "9d0e3bd839c5a4d3"
     lat = '34.704649'
     lng = '135.499200'
-
     range = 1
-    api = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{key}&lat=#{lat}&lng=#{lng}&range=#{range}&order=1&format=json")
+    api = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{ENV["HOTPEPPER_API_KEY"]}&lat=#{lat}&lng=#{lng}&range=#{range}&order=1&format=json")
     json = Net::HTTP.get(api)
     @result = JSON.parse(json)
     @result_data = JSON.parse(json, symbolize_names: true)
@@ -39,5 +23,24 @@ class Public::StoresController < ApplicationController
   end
 
   def show
+    @store = Store.find(params[:id])
   end
+  
+  def create
+    @store = Store.new(store_params)
+    if @store.save
+      redirect_to public_stores_path
+    else
+      @store = Store.new
+      render 'new'
+    end
+  end
+  
+  # binding.pry
+  private
+  
+  def store_params
+      params.require(:store).permit(:lat , :lng)
+  end
+  
 end

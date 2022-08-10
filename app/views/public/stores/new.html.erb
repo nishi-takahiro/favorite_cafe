@@ -1,62 +1,52 @@
 
 <div class = "m-4">
 
-  <script src="app.js"></script>
-    <title>Places Search Box</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <!-- playground-hide -->
-    <script>
-      const process = { env: {} };
-      process.env.GOOGLE_MAPS_API_KEY =
-        "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg";
-    </script>
-    <!-- playground-hide-end -->
+ <!--javascript地図表示、検索-->
+<%= form_with model: @store, url: public_stores_path, local: true do |f| %>
+  <div class="actions">
+    <%= f.label :lat,"緯度" %>
+    <%= f.text_field :lat,:value =>"緯度", id: :lat %>
+    <%= f.label :lng,"経度" %>
+    <%= f.text_field :lng,:value =>"経度", id: :lng %>
+    <%= f.submit %>
+  </div>
+<% end %>
 
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script type="module" src="./index.js"></script>
-  </head>
-  <body>
-    <input
-      id="address"
-      class="controls"
-      type="text"
-      placeholder="Search Box"
-    />
-    <input type="button" value="検索" onclick="codeAddress()">
-    <div id="map"> 
-     </div>
-     
-      <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyA0kYKl2T1oeZcPhMcBTSQ_7tvl8kVoO4M&callback=initMap" async defer></script>
-      </script>
-    
-   </body>
+<h2>Map</h2>
 
-  <style>
-    #gmap {
-      height: 600px;
-      width: 800px;
-    }
-  </style>
-  <div id="gmap"></div>
-  
-  <script>
-    var map;
-    function initMap() {
-      geocoder = new google.maps.Geocoder()
-      var target = document.getElementById('gmap');
-      var empire = {lat: 35.68223, lng: 139.76688};  
-      //Empire State Bldg の緯度（latitude）と経度（longitude）
-      map = new google.maps.Map(target, {
-        center: empire,
-        zoom: 14
-      });
-    }
-    let geocoder
-    let aft
-    function codeAddress(){
-      let inputAddress = document.getElementById('address').value;
-      geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-        if (status == 'OK') {
+<input id="address" type="textbox" value="店舗検索">
+<input type="button" value="検索" onclick="codeAddress()">
+<p>マーカーをドラック＆ドロップで位置の調整ができます。<p>
+<div id='map'></div>
+
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+//初期マップの設定
+let map
+let marker
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center:  {lat: 35.6803997, lng:139.7690174},  //東京
+    zoom: 15,
+
+  });
+}
+
+//検索後のマップ作成
+let geocoder
+let aft
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
         //マーカーが複数できないようにする
         if (aft == true){
             marker.setMap(null);
@@ -89,6 +79,8 @@
   });   
 }
 
-  </script> 
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV["GOOGLE_API_KEY"] %>&callback=initMap" async defer></script>
+
 </div>
 <%= @result %>

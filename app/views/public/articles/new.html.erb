@@ -2,10 +2,10 @@
 <div class = "container">
     <div class = "row">
         <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold">
-        新規投稿
+        新規投稿 <%= @result_data1 %>
         </div>
     </div>
-    <%= form_with model: @article, url: public_articles_path, method: :post do |f| %>
+    <%= form_with model: [:public, @store, @article], method: :post do |f| %>
         <div class = "row ml-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">
                 投稿画像
@@ -24,26 +24,32 @@
         </div>
         <div class = "row ml-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">
-                美味しさ
+                <%= f.label :rate_delicious,'美味しさ' %>
             </div>
             <div class = "col-sm-7 col-md-6 col-lg-6">
-                rate_delicious
+                <div class="form-group row col-form-label" id="rate_delicious">
+                    <%= f.hidden_field :rate_delicious, id: :rate_delicious %>
+                  </div>
             </div>
         </div>
         <div class = "row ml-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">
-                雰囲気
+                <%= f.label :rate_atmospher,'雰囲気' %>
             </div>
             <div class = "col-sm-7 col-md-6 col-lg-6">
-                rate_atmospher
+                 <div class="form-group row col-form-label" id="rate_atmospher">
+                    <%= f.hidden_field :rate_atmospher, id: :rate_atmospher %>
+                 </div>  
             </div>
         </div>
         <div class = "row ml-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">
-                コストパフォーマンス
+               <%= f.label :rate_atmospher,'コストパフォーマンス' %>
             </div>
             <div class = "col-sm-7 col-md-6 col-lg-6">
-                rate_cost
+                  <div class="form-group row  col-form-label" id="rate_cost">
+                    <%= f.hidden_field :rate_cost, id: :rate_cost %>
+                  </div>
             </div>
         </div>
         <div class = "row ml-2">
@@ -54,29 +60,43 @@
                 <%= f.text_area :store_comment , rows:'5', placeholder: "コメント", class: "form-control form-control-sm"%>
             </div>
         </div>
-     
 
-  <div class="form-group row" id="star">
-    <%= f.label :rate,'重要度 ', class:'col-md-1 col-form-label' %>
-    <%= f.hidden_field :rate, id: :review_star %>
-  </div>
 
- <div class="font-weight-bold">評価</div>
-      <div class="field mb-3" id="score">
-        <%= f.label :score, '評価' %>
-        <%= f.hidden_field :score, id: :review_score %>
-      </div>
-      <script>
-      $('#score').empty();
-      $('#score').raty({
-        size     : 36,
-        starOff:  '<%= asset_path('star-off.png') %>',
-        starOn : '<%= asset_path('star-on.png') %>',
-        starHalf: "<%= asset_path('star-half.png') %>",
-        scoreName: 'review[score]',
-        half: false,
-      });
-      </script>
+  <!-- 評価javascript -->
+  <script>
+  $('#rate_delicious').raty({
+    size     : 15,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'comment[rate_delicious]',
+    half: false,
+  });
+  </script>  
+  
+  <script>
+  $('#rate_atmospher').raty({
+    size     : 15,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'comment[rate_atmospher]',
+    half: false,
+  });
+  </script>  
+  
+   <script>
+  $('#rate_cost').raty({
+    size     : 15,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'comment[rate_cost]',
+    half: false,
+  });
+  </script>  
+ 
+
 
 
 

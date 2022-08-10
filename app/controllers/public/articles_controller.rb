@@ -1,6 +1,12 @@
 class Public::ArticlesController < ApplicationController
   def new
-    @article = Article.new
+    @store = Store.find(params[:store_id])
+    @article = @store.articles.new
+    api = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{ENV["HOTPEPPER_API_KEY"]}&lat=#{@store.lat}&lng=#{@store.lng}&range=1&order=1&format=json")
+    json = Net::HTTP.get(api)
+    @result = JSON.parse(json)
+    @result_data = JSON.parse(json, symbolize_names: true)
+    @result_data1 = @result_data[:results][:shop]
   end
 
   def show
@@ -14,9 +20,9 @@ class Public::ArticlesController < ApplicationController
   end
   
   def create
-    article = Article.new(article_params)
-    article.user_id = current_user.id
-    if article.save
+    @article = Article.new(article_params)
+    @article.user_id = current_user.id
+    if @article.save
       redirect_to public_articles_path
     else
       @article = Article.new

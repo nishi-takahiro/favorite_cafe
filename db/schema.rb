@@ -82,11 +82,9 @@ ActiveRecord::Schema.define(version: 2022_07_30_043313) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.string "store_name"
-    t.string "address"
     t.string "map"
-    t.float "latitude"
-    t.float "longitude"
+    t.float "lat"
+    t.float "lng"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

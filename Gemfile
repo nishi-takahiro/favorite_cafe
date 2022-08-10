@@ -61,3 +61,5 @@ gem 'pry-byebug', group: :development
 gem 'pry-rails'
 gem 'jquery-rails' 
 gem 'jquery-ui-rails'
+gem 'dotenv-rails'
+gem 'net-smtp'
