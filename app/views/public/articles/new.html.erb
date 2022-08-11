@@ -2,9 +2,43 @@
 <div class = "container">
     <div class = "row">
         <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold">
-        新規投稿 <%= @result_data1 %>
+        新規投稿 
+         
         </div>
     </div>
+    
+    <div class = "row">
+　        <div class = "col-sm-12 col-md-12 col-lg-12 ">
+                <div class = "row">
+                    <div class = "col-sm-11 col-md-11 col-lg-11">
+                        lat = '35.658'
+                        lng = '139.7016'
+                    </div>
+                </div>
+            <div class = "row">
+               <div class ="col-sm-11 col-md-11 col-lg-11d">
+                lat = '34.684023'
+                lng = '135.827560'
+                </div>
+            </div>
+           <div class = "row">
+    　        <div class ="col-sm-11 col-md-11 col-lg-11d">
+                lat = '34.704649'
+                lng = '135.499200'
+                </div>
+            </div> 
+             <div class = "row">
+    　        <div class ="col-sm-11 col-md-11 col-lg-11d">
+               <%= @article.store_name %></br>
+               <%= @result_data1[:address] %>
+                </div>
+            </div> 
+            
+            </div>
+        </div>
+            
+        
+    
     <%= form_with model: [:public, @store, @article], method: :post do |f| %>
         <div class = "row ml-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">

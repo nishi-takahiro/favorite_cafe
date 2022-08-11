@@ -6,7 +6,8 @@ class Public::ArticlesController < ApplicationController
     json = Net::HTTP.get(api)
     @result = JSON.parse(json)
     @result_data = JSON.parse(json, symbolize_names: true)
-    @result_data1 = @result_data[:results][:shop]
+    @result_data1 = @result_data[:results][:shop][0]
+    @article.store_name = @result_data1[:name]
   end
 
   def show

@@ -12,14 +12,6 @@ class Public::StoresController < ApplicationController
   end
 
   def index
-    lat = '34.704649'
-    lng = '135.499200'
-    range = 1
-    api = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{ENV["HOTPEPPER_API_KEY"]}&lat=#{lat}&lng=#{lng}&range=#{range}&order=1&format=json")
-    json = Net::HTTP.get(api)
-    @result = JSON.parse(json)
-    @result_data = JSON.parse(json, symbolize_names: true)
-    @result_data1 = @result_data[:results][:shop]
   end
 
   def show
@@ -29,7 +21,7 @@ class Public::StoresController < ApplicationController
   def create
     @store = Store.new(store_params)
     if @store.save
-      redirect_to public_stores_path
+      redirect_to new_public_store_article_path(@store)
     else
       @store = Store.new
       render 'new'
