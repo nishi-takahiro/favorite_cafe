@@ -1,10 +1,10 @@
 class Article < ApplicationRecord
-    has_many :likes, dependent: :destroy
-    has_many :comments, dependent: :destroy
+    # has_many :likes, dependent: :destroy
+    # has_many :comments, dependent: :destroy
     
     belongs_to :user
     belongs_to :store
-    belongs_to :tag_intermediate
+    # belongs_to :tag_intermediate
     
     has_one_attached :store_image
 end
