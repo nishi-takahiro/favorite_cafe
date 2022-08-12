@@ -7,40 +7,8 @@
         </div>
     </div>
     
-    <div class = "row">
-　        <div class = "col-sm-12 col-md-12 col-lg-12 ">
-                <div class = "row">
-                    <div class = "col-sm-11 col-md-11 col-lg-11">
-                        lat = '35.658'
-                        lng = '139.7016'
-                    </div>
-                </div>
-            <div class = "row">
-               <div class ="col-sm-11 col-md-11 col-lg-11d">
-                lat = '34.684023'
-                lng = '135.827560'
-                </div>
-            </div>
-           <div class = "row">
-    　        <div class ="col-sm-11 col-md-11 col-lg-11d">
-                lat = '34.704649'
-                lng = '135.499200'
-                </div>
-            </div> 
-             <div class = "row">
-    　        <div class ="col-sm-11 col-md-11 col-lg-11d">
-               <%= @article.store_name %></br>
-               <%= @result_data1[:address] %>
-                </div>
-            </div> 
-            
-            </div>
-        </div>
-            
-        
-    
-    <%= form_with model: [:public, @store, @article], method: :post do |f| %>
-        <div class = "row ml-2">
+    <%= form_with model: [:public, @store, @article],url: public_store_articles_path, method: :post do |f| %>
+        <div class = "row ml-2 m-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">
                 投稿画像
             </div>
@@ -48,7 +16,7 @@
                 <%= f.file_field :store_image, accept: "image/*" %>
             </div>
         </div>
-        <div class = "row ml-2">
+        <div class = "row ml-2 m-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">
                 お店の名前
             </div>
@@ -56,11 +24,19 @@
                 <%= f.text_field :store_name %>
             </div>
         </div>
+        <div class = "row ml-2 m-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3">
+                お店の住所
+            </div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                <%= f.text_field :address %>
+            </div>
+        </div>
         <div class = "row ml-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">
                 <%= f.label :rate_delicious,'美味しさ' %>
             </div>
-            <div class = "col-sm-7 col-md-6 col-lg-6">
+            <div class = "col-sm-7 col-md-6 col-lg-6 ml-2">
                 <div class="form-group row col-form-label" id="rate_delicious">
                     <%= f.hidden_field :rate_delicious, id: :rate_delicious %>
                   </div>
@@ -70,7 +46,7 @@
             <div class = "col-sm-3 col-md-4 col-lg-3">
                 <%= f.label :rate_atmospher,'雰囲気' %>
             </div>
-            <div class = "col-sm-7 col-md-6 col-lg-6">
+            <div class = "col-sm-7 col-md-6 col-lg-6 ml-2">
                  <div class="form-group row col-form-label" id="rate_atmospher">
                     <%= f.hidden_field :rate_atmospher, id: :rate_atmospher %>
                  </div>  
@@ -80,7 +56,7 @@
             <div class = "col-sm-3 col-md-4 col-lg-3">
                <%= f.label :rate_atmospher,'コストパフォーマンス' %>
             </div>
-            <div class = "col-sm-7 col-md-6 col-lg-6">
+            <div class = "col-sm-7 col-md-6 col-lg-6 ml-2">
                   <div class="form-group row  col-form-label" id="rate_cost">
                     <%= f.hidden_field :rate_cost, id: :rate_cost %>
                   </div>
@@ -90,7 +66,7 @@
             <div class = "col-sm-3 col-md-4 col-lg-3">
                 紹介文
             </div>
-            <div class = "col-sm-7 col-md-7 col-lg-7">
+            <div class = "col-sm-7 col-md-7 col-lg-7 ml-2">
                 <%= f.text_area :store_comment , rows:'5', placeholder: "コメント", class: "form-control form-control-sm"%>
             </div>
         </div>

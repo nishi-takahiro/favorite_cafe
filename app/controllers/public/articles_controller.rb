@@ -8,6 +8,7 @@ class Public::ArticlesController < ApplicationController
     @result_data = JSON.parse(json, symbolize_names: true)
     @result_data1 = @result_data[:results][:shop][0]
     @article.store_name = @result_data1[:name]
+    @article.address = @result_data1[:address]
   end
 
   def show
@@ -21,10 +22,11 @@ class Public::ArticlesController < ApplicationController
   end
   
   def create
-    @article = Article.new(article_params)
-    @article.user_id = current_user.id
-    if @article.save
-      redirect_to public_articles_path
+    store = Store.find(params[:store_id])
+    article = current_user.articles.new(article_params)
+    article.store_id = store.id
+    if article.save
+      redirect_to public_users_my_page_path
     else
       @article = Article.new
       render :new
@@ -40,7 +42,7 @@ class Public::ArticlesController < ApplicationController
   private
    
    def article_params
-    params.require(:article).permit(:store_image, :store_name, :store_comment, :rate_delicious, :rate_atmospher, :rate_cost)
+    params.require(:article).permit(:store_image, :store_name, :store_comment, :rate_delicious, :rate_atmospher, :rate_cost, :address)
    end
   
 end
