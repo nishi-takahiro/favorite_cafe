@@ -1,23 +1,87 @@
 <h1>Public::Articles#index</h1>
 <p>Find me in app/views/public/articles/index.html.erb</p>
 <div class = "container">
-    
+     <% @articles.each do |articles| %>
         <div class = "row">
-             <% @articles.each do |articles| %>
-                <div class = "col-sm-12 col-md-4 col-lg-3">
+            <div class = "col-sm-12 col-md-4 col-lg-3">
+              <div class = "row m-1">
+                 <%= link_to public_store_article_path([@store], [articles]) do %>
+                     <%= articles.id %>
                      <% if articles.store_image.attached? %>
                        <%= image_tag articles.store_image, size: "200x200" %>
                      <% else %>
-                       <%= image_tag "no_image.jpg", size: "200x200" %>
+                       <%= image_tag "store-no-image.jpg", size: "200x200" %>
                      <% end %>
-                     <div class = "col-sm-12 col-md-4 col-lg-3">
-                         <%= @articles.store_name %>
-                    </div>
-                     <div class = "col-sm-12 col-md-4 col-lg-3">
-                         <%= @articles.store_comment %>
+                 <% end %>
+               </div> 
+            </div>
+            <div class = "col-sm-12 col-md-8 col-lg-9">
+                <div class = "row">
+                    <div class = "col-sm-12 col-md-4 col-lg-4 small">店名</div>
+                    <div class = "col-sm-12 col-md-4 col-lg-4">
+                      <%= articles.store_name %>
                     </div>
                 </div>
-            <% end %> 
-        </div>
-   
+                <div class = "row">
+                    <div class = "col-sm-12 col-md-4 col-lg-4 small">コメント</div>
+                    <div class = "col-sm-12 col-md-4 col-lg-4">
+                      <%= articles.store_comment %>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "col-sm-12 col-md-4 col-lg-4 small">美味しさ</div>
+                    <div class = "col-sm-12 col-md-7 col-lg-7">
+                      <div id="rate_delicious<%= articles.id%>"></div>
+                          <script>
+                            $('#rate_delicious<%= articles.id%>').raty({
+                              size      : 36,
+                              starOff   : '<%= asset_path('star-off.png') %>',
+                              starOn    : '<%= asset_path('star-on.png') %>',
+                              starHalf  : '<%= asset_path('star-half.png') %>',
+                              half      : true,
+                              readOnly: true,
+                              score: <%= articles.rate_delicious %>,
+                            });
+                          </script>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "col-sm-12 col-md-4 col-lg-4 small">雰囲気</div>
+                    <div class = "col-sm-12 col-md-7 col-lg-7">
+                     <div id="rate_atmospher<%= articles.id%>"></div>
+                        <script>
+                            $('#rate_atmospher<%= articles.id%>').raty({
+                              size      : 36,
+                              starOff   : '<%= asset_path('star-off.png') %>',
+                              starOn    : '<%= asset_path('star-on.png') %>',
+                              starHalf  : '<%= asset_path('star-half.png') %>',
+                              half      : true,
+                              readOnly: true,
+                              score: <%= articles.rate_atmospher %>,
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "col-sm-12 col-md-4 col-lg-4 small">コストパフォーマンス</div>
+                    <div class = "col-sm-12 col-md-7 col-lg-7">
+                     <div id="rate_cost<%= articles.id%>"></div>
+                        <script>
+                            $('#rate_cost<%= articles.id%>').raty({
+                              size      : 36,
+                              starOff   : '<%= asset_path('star-off.png') %>',
+                              starOn    : '<%= asset_path('star-on.png') %>',
+                              starHalf  : '<%= asset_path('star-half.png') %>',
+                              half      : true,
+                              readOnly: true,
+                              score: <%= articles.rate_cost %>,
+                            });
+                      </script>
+                    </div>
+                </div>
+                  
+                  
+            </div>
+        </div> 
+     <% end %> 
 </div>

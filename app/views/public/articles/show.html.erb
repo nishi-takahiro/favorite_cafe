@@ -1,2 +1,105 @@
 <h1>Public::Articles#show</h1>
 <p>Find me in app/views/public/articles/show.html.erb</p>
+
+  <div class = "container">
+      <div class = "row">
+          <div class = "col-sm-12 col-mg-12 col-lg-12 px-sm-0">
+              <h5 class = "col-lg-3 m-3 font-weight-bold">投稿詳細</h5>
+                  
+                  <div class = "row">
+                    <div class = "col-sm-12 col-mg-8 col-lg-7">
+                      <table class = "table table-bordered">
+                        <tr>
+                          <th>投稿画像</th>
+                          <td>
+                              <% if @article.store_image.attached? %>
+                                <%= image_tag @article.store_image, size: "100x100" %>
+                              <% else %>
+                                <%= image_tag "store-no-image.jpg", size: "100x100" %>
+                              <% end %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>お店の名前</th>
+                          <td><%= @article.store_name %></td>
+                        </tr>
+                       <tr>
+                          <th>お店の住所</th>
+                          <td><%= @article.address %></td>
+                        </tr>
+                        <tr>
+                          <th>美味しさ</th>
+                          <td>
+                            <div id="rate_delicious<%= @article.id%>"></div>
+                              <script>
+                                $('#rate_delicious<%= @article.id%>').raty({
+                                  size      : 36,
+                                  starOff   : '<%= asset_path('star-off.png') %>',
+                                  starOn    : '<%= asset_path('star-on.png') %>',
+                                  starHalf  : '<%= asset_path('star-half.png') %>',
+                                  half      : true,
+                                  readOnly: true,
+                                  score: <%= @article.rate_delicious %>,
+                                });
+                              </script>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>雰囲気</th>
+                          <td>
+                            <div id="rate_atmospher<%= @article.id%>"></div>
+                              <script>
+                                $('#rate_atmospher<%= @article.id%>').raty({
+                                  size      : 36,
+                                  starOff   : '<%= asset_path('star-off.png') %>',
+                                  starOn    : '<%= asset_path('star-on.png') %>',
+                                  starHalf  : '<%= asset_path('star-half.png') %>',
+                                  half      : true,
+                                  readOnly: true,
+                                  score: <%= @article.rate_atmospher %>,
+                                });
+                              </script>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th>コストパフォーマンス</th>
+                          <td>
+                            <div id="rate_cost<%= @article.id%>"></div>
+                              <script>
+                                $('#rate_cost<%= @article.id%>').raty({
+                                  size      : 36,
+                                  starOff   : '<%= asset_path('star-off.png') %>',
+                                  starOn    : '<%= asset_path('star-on.png') %>',
+                                  starHalf  : '<%= asset_path('star-half.png') %>',
+                                  half      : true,
+                                  readOnly: true,
+                                  score: <%= @article.rate_cost %>,
+                                });
+                              </script>
+                          </td>
+                        </tr>
+                     </table>
+                  
+                   <div class = "row font-weight-bold align-items-center">
+                       <div class = "col-lg-3 font-weight-bold align-items-center">投稿一覧</div>
+                        <div class = "col-lg-4 font-weight-bold align-items-center">
+                         <%= link_to public_store_articles_path, class:"btn btn-primary m-3 " do %>
+                         <i>一覧を見る</i>
+                         <% end %>
+                       </div>
+                   </div>
+                   
+                   <div class = "row font-weight-bold align-items-center">
+                      <div class = "col-lg-3 font-weight-bold  align-items-center">投稿編集</div>
+                      <div class = "col-lg-4 font-weight-bold align-items-center">
+                        <%= link_to  edit_public_store_article_path, class:"btn btn-primary m-3" do %>
+                        <i>編集する</i>
+                        <% end %>
+                    </div>  
+                  </div>
+                  
+                  </div>
+                  </div>
+          </div>
+      </div>
+  </div>

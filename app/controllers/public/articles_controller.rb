@@ -12,9 +12,12 @@ class Public::ArticlesController < ApplicationController
   end
 
   def show
+    @store = Store.find(params[:store_id])
+    @article = Article.find(params[:id])
   end 
 
   def index
+    @store = Store.find(params[:store_id])
     @articles = Article.all
   end
 
@@ -26,7 +29,7 @@ class Public::ArticlesController < ApplicationController
     article = current_user.articles.new(article_params)
     article.store_id = store.id
     if article.save
-      redirect_to public_users_my_page_path
+      redirect_to  public_store_article_path([store], [article])
     else
       @article = Article.new
       render :new
