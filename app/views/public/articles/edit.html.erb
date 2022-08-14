@@ -1,2 +1,112 @@
 <h1>Public::Articles#edit</h1>
 <p>Find me in app/views/public/articles/edit.html.erb</p>
+
+
+<div class = "container">
+    <div class = "row">
+        <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold">投稿編集</div>
+    </div>
+    
+    <%= form_with model: [:public, @store, @article], url: public_store_article_path([@store], [@article]) do |f| %>
+        <div class = "row ml-2 m-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3"><%= f.label :store_image,'投稿画像' %></div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                <%= f.file_field :store_image, accept: "image/*" %>
+            </div>
+        </div>
+        <div class = "row ml-2 m-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3"><%= f.label :store_name,'お店の名前' %></div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                <%= f.text_field :store_name, size:60, autofocus: true, autocomplete: "store_name" %>
+            </div>
+        </div>
+        <div class = "row ml-2 m-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3"><%= f.label :address,'お店の住所' %></div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                <%= f.text_field :address, size:60, autofocus: true, autocomplete: "address" %>
+            </div>
+        </div>
+        <div class = "row ml-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3"><%= f.label :rate_delicious,'美味しさ' %></div>
+            <div class = "col-sm-7 col-md-6 col-lg-6 ml-2">
+                <div class="form-group row col-form-label" id="rate_delicious">
+                    <%= f.hidden_field :rate_delicious, value: @article.rate_delicious, id: :rate_delicious %>
+                </div>
+               
+            </div>
+        </div>
+        <div class = "row ml-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3"><%= f.label :rate_atmospher,'雰囲気' %></div>
+            <div class = "col-sm-7 col-md-6 col-lg-6 ml-2">
+                <div class="form-group row col-form-label" id="rate_atmospher">
+                    <%= f.hidden_field :rate_atmospher, value: @article.rate_atmospher, id: :rate_atmospher %>
+                </div>
+            </div>
+        </div>
+        <div class = "row ml-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3"><%= f.label :rate_atmospher,'コストパフォーマンス' %></div>
+            <div class = "col-sm-7 col-md-6 col-lg-6 ml-2">
+              <div class="form-group row  col-form-label" id="rate_cost">
+                   <%= f.hidden_field :rate_cost, value: @article.rate_cost, id: :rate_cost %>
+              </div>
+            </div>
+        </div>
+        <div class = "row ml-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3">紹介文</div>
+            <div class = "col-sm-7 col-md-7 col-lg-7">
+                <%= f.text_area :store_comment , rows:'5', placeholder: "コメント", class: "form-control form-control-sm"%>
+            </div>
+        </div>
+         <div class = "row m-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3">タグ</div>
+            <div class = "col-sm-7 col-md-7 col-lg-7">
+                <%= f.text_field :tag, size:60, value: @tags, autofocus: true, autocomplete: "tag" %>
+            </div>
+        </div>
+
+   <div class = "row">
+     <%= f.submit "編集内容を保存", class: "btn btn-success" %>
+     <% end %>
+   </div>
+ </div>
+</div>
+
+ <!-- 評価javascript -->
+  <script>
+  $('#rate_delicious').raty({
+    size     : 15,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'article[rate_delicious]',
+    score: <%= @article.rate_delicious %>,
+    readOnly: false,
+    half: true,
+  });
+  </script>  
+  
+  <script>
+  $('#rate_atmospher').raty({
+    size     : 15,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'article[rate_atmospher]',
+    score: <%= @article.rate_atmospher %>,
+    readOnly: false,
+    half: true,
+  });
+  </script>  
+  
+   <script>
+  $('#rate_cost').raty({
+    size     : 15,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'article[rate_cost]',
+    score: <%= @article.rate_cost %>,
+    readOnly: false,
+    half: true,
+  });
+  </script>  

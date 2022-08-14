@@ -2,6 +2,8 @@ class Public::ArticlesController < ApplicationController
   def new
     @store = Store.find(params[:store_id])
     @article = @store.articles.new
+    
+    # お店を探すコード
     api = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{ENV["HOTPEPPER_API_KEY"]}&lat=#{@store.lat}&lng=#{@store.lng}&range=1&order=1&format=json")
     json = Net::HTTP.get(api)
     @result = JSON.parse(json)
@@ -14,6 +16,7 @@ class Public::ArticlesController < ApplicationController
   def show
     @store = Store.find(params[:store_id])
     @article = Article.find(params[:id])
+    @tags = @article.tags.pluck(:tag).join(',')
   end 
 
   def index
@@ -22,14 +25,20 @@ class Public::ArticlesController < ApplicationController
   end
 
   def edit
+    @store = Store.find(params[:store_id])
+    @article = Article.find(params[:id])
+    @tags = @article.tags.pluck(:tag).join(',')
+    
   end
   
   def create
     store = Store.find(params[:store_id])
-    article = current_user.articles.new(article_params)
-    article.store_id = store.id
-    if article.save
-      redirect_to  public_store_article_path([store], [article])
+    @article = current_user.articles.new(article_params)
+    tags = params[:article][:tag].split(',')
+    @article.store_id = store.id
+    if @article.save
+       @article.save_tags(tags)
+         redirect_to  public_store_article_path([store], [@article])
     else
       @article = Article.new
       render :new
@@ -37,6 +46,15 @@ class Public::ArticlesController < ApplicationController
   end
   
   def update
+    store = Store.find(params[:store_id])
+    @article = current_user.articles.find(params[:id])
+    tags = params[:article][:tag_id].split(',')
+    if @article.update(article_params)
+       @article.update_tags(tags)
+         redirect_to public_store_article_path([store], [article])
+    else
+      render 'edit'
+    end
   end
   
   def destroy

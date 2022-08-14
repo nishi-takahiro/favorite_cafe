@@ -1,3 +1,3 @@
 class Tag < ApplicationRecord
-    belongs_to :tag_intermediate
+    has_many :tag_intermediates, dependent: :destroy
 end

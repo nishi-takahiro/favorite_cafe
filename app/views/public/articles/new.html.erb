@@ -1,40 +1,30 @@
 
 <div class = "container">
     <div class = "row">
-        <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold">
-        新規投稿 
-        </div>
+        <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold"></div>
     </div>
     
     <%= form_with model: [:public, @store, @article],url: public_store_articles_path, method: :post do |f| %>
         <div class = "row ml-2 m-2">
-            <div class = "col-sm-3 col-md-4 col-lg-3">
-                投稿画像
-            </div>
-            <div class = "col-sm-7 col-md-6 col-lg-6">
-                <%= f.file_field :store_image, accept: "image/*" %>
-            </div>
+            <div class = "col-sm-3 col-md-4 col-lg-3">投稿画像</div>
+                <div class = "col-sm-7 col-md-6 col-lg-6">
+                    <%= f.file_field :store_image, accept: "image/*" %>
+                </div>
         </div>
         <div class = "row ml-2 m-2">
-            <div class = "col-sm-3 col-md-4 col-lg-3">
-                お店の名前
-            </div>
-            <div class = "col-sm-7 col-md-6 col-lg-6">
-                <%= f.text_field :store_name %>
-            </div>
+            <div class = "col-sm-3 col-md-4 col-lg-3">お店の名前</div>
+                <div class = "col-sm-7 col-md-6 col-lg-6">
+                    <%= f.text_field :store_name %>
+                </div>
         </div>
         <div class = "row ml-2 m-2">
-            <div class = "col-sm-3 col-md-4 col-lg-3">
-                お店の住所
-            </div>
-            <div class = "col-sm-7 col-md-6 col-lg-6">
-                <%= f.text_field :address %>
-            </div>
+            <div class = "col-sm-3 col-md-4 col-lg-3">お店の住所</div>
+                <div class = "col-sm-7 col-md-6 col-lg-6">
+                    <%= f.text_field :address %>
+                </div>
         </div>
         <div class = "row ml-2">
-            <div class = "col-sm-3 col-md-4 col-lg-3">
-                <%= f.label :rate_delicious,'美味しさ' %>
-            </div>
+            <div class = "col-sm-3 col-md-4 col-lg-3"><%= f.label :rate_delicious,'美味しさ' %></div>
             <div class = "col-sm-7 col-md-6 col-lg-6 ml-2">
                 <div class="form-group row col-form-label" id="rate_delicious">
                     <%= f.hidden_field :rate_delicious, id: :rate_delicious %>
@@ -42,9 +32,7 @@
             </div>
         </div>
         <div class = "row ml-2">
-            <div class = "col-sm-3 col-md-4 col-lg-3">
-                <%= f.label :rate_atmospher,'雰囲気' %>
-            </div>
+            <div class = "col-sm-3 col-md-4 col-lg-3"><%= f.label :rate_atmospher,'雰囲気' %></div>
             <div class = "col-sm-7 col-md-6 col-lg-6 ml-2">
                  <div class="form-group row col-form-label" id="rate_atmospher">
                     <%= f.hidden_field :rate_atmospher, id: :rate_atmospher %>
@@ -52,26 +40,33 @@
             </div>
         </div>
         <div class = "row ml-2">
-            <div class = "col-sm-3 col-md-4 col-lg-3">
-               <%= f.label :rate_atmospher,'コストパフォーマンス' %>
-            </div>
+            <div class = "col-sm-3 col-md-4 col-lg-3"><%= f.label :rate_atmospher,'コストパフォーマンス' %></div>
             <div class = "col-sm-7 col-md-6 col-lg-6 ml-2">
-                  <div class="form-group row  col-form-label" id="rate_cost">
-                    <%= f.hidden_field :rate_cost, id: :rate_cost %>
-                  </div>
+              <div class="form-group row  col-form-label" id="rate_cost">
+                <%= f.hidden_field :rate_cost, id: :rate_cost %>
+              </div>
             </div>
         </div>
         <div class = "row ml-2">
-            <div class = "col-sm-3 col-md-4 col-lg-3">
-                紹介文
-            </div>
-            <div class = "col-sm-7 col-md-7 col-lg-7 ml-2">
-                <%= f.text_area :store_comment , rows:'5', placeholder: "コメント", class: "form-control form-control-sm"%>
-            </div>
+            <div class = "col-sm-3 col-md-4 col-lg-3">紹介文</div>
+                <div class = "col-sm-7 col-md-7 col-lg-7 ml-2">
+                    <%= f.text_area :store_comment , rows:'5', placeholder: "コメント", class: "form-control form-control-sm"%>
+                </div>
         </div>
+         <div class = "row ml-2 m-2">
+            <div class = "col-sm-3 col-md-4 col-lg-3">タグ付け</div>
+                <div class = "col-sm-7 col-md-7 col-lg-7 ml-2">
+                     <%= f.text_field :tag, placeholder:",(カンマ)で区切ってください" %>
+                </div>
+        </div>
+   <div class = "row">
+     <%= f.submit "投稿する", class: "btn btn-success" %>
+     <% end %>
+   </div>
+ </div>
+</div> 
 
-
-  <!-- 評価javascript -->
+<!-- 評価javascript -->
   <script>
   $('#rate_delicious').raty({
     size     : 15,
@@ -104,14 +99,3 @@
     half: true,
   });
   </script>  
- 
-
-
-
-
-   <div class = "row">
-     <%= f.submit "投稿する", class: "btn btn-success" %>
-     <% end %>
-   </div>
- </div>
-</div>

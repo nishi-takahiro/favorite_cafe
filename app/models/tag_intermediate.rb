@@ -1,4 +1,7 @@
 class TagIntermediate < ApplicationRecord
-    # has_many :tags, dependent: :destroy
-    # has_many :articles, dependent: :destroy
+    belongs_to :tag
+    belongs_to :article
+    
+    validates :article_id, presence: true
+    validates :tag_id, presence: true
 end
