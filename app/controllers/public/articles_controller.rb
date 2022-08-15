@@ -48,16 +48,19 @@ class Public::ArticlesController < ApplicationController
   def update
     store = Store.find(params[:store_id])
     @article = current_user.articles.find(params[:id])
-    tags = params[:article][:tag_id].split(',')
+    tags = params[:article][:tag].split(',')
     if @article.update(article_params)
        @article.update_tags(tags)
-         redirect_to public_store_article_path([store], [article])
+         redirect_to public_store_article_path([store], [@article])
     else
       render 'edit'
     end
   end
   
   def destroy
+    article = Article.find(params[:id])
+    article.destroy
+    redirect_to  public_store_articles_path
   end
   
   private

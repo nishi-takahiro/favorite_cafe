@@ -92,23 +92,27 @@
                         </tr>
                      </table>
                   
-                   <div class = "row font-weight-bold align-items-center">
-                       <div class = "col-mg-3 col-lg-2 font-weight-bold align-items-center">投稿一覧</div>
-                        <div class = "col-mg-4 col-lg-3 font-weight-bold align-items-center">
-                         <%= link_to public_store_articles_path, class:"btn btn-primary m-3 " do %>
-                         <i>一覧を見る</i>
-                         <% end %>
-                       </div>
-                   
-                   
-                      <div class = "col-mg-3 col-lg-2 font-weight-bold  align-items-center">投稿編集</div>
-                      <div class = "col-mg-4 col-lg-3 font-weight-bold align-items-center">
-                        <%= link_to  edit_public_store_article_path, class:"btn btn-primary m-3" do %>
-                        <i>編集する</i>
-                        <% end %>
-                    </div>  
-                  </div>
-                  </div>
+                       <div class = "row font-weight-bold align-items-center">
+                            <div class = "col-sm-6 col-mg-4 col-lg-3 font-weight-bold align-items-center">
+                             <%= link_to public_store_articles_path, class:"btn btn-primary m-3 " do %>
+                             <i>一覧を見る</i>
+                             <% end %>
+                           </div>
+                       
+                          <div class = "col-sm-6 col-mg-4 col-lg-3 font-weight-bold align-items-center">
+                            <%= link_to  edit_public_store_article_path, class:"btn btn-primary m-3" do %>
+                            <i>編集する</i>
+                            <% end %>
+                        </div>
+                        
+                            <div class = "col-sm-6 col-mg-4 col-lg-3 font-weight-bold align-items-center">
+                             <%= link_to public_store_article_path([@store], [@article]), class:"btn btn-danger m-3 ", method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+                             <i>削除</i>
+                             <% end %>
+                         </div>
+                        
+                      </div>
+                    </div>
                   </div>
           </div>
       </div>
