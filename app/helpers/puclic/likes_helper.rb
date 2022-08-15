@@ -1,0 +1,2 @@
+module Puclic::LikesHelper
+end

@@ -1,5 +1,5 @@
 class Article < ApplicationRecord
-    # has_many :likes, dependent: :destroy
+    has_many :likes, dependent: :destroy
     # has_many :comments, dependent: :destroy
     has_many :tag_intermediates, dependent: :destroy
     has_many :tags, through: :tag_intermediates
@@ -9,6 +9,11 @@ class Article < ApplicationRecord
    
     
     has_one_attached :store_image
+    
+    # いいね機能メソッド
+  def liked_by?(user)
+    likes.exists?(user_id: user.id)
+  end
     
   # タグ付けの新規投稿用メソッド  
   def save_tags(tags)
