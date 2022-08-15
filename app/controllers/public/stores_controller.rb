@@ -21,7 +21,7 @@ class Public::StoresController < ApplicationController
   def create
     @store = Store.new(store_params)
     if @store.save
-      redirect_to new_public_article_path
+      redirect_to new_public_store_article_path(@store)
     else
       @store = Store.new
       render 'new'

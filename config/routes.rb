@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     get 'users/confirmation' => 'users#confirmation'
     patch 'withdraw' => 'users#withdraw'
     resources :users
-    resources :stores
+    resources :stores do
+      resources :articles
+    end
     resources :articles do
       resource :likes, only: [:create, :destroy]
     end
