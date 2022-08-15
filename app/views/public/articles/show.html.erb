@@ -106,6 +106,27 @@
                           </p>
                         <% end %>
                      </div>
+                     
+                     <div class = "row">
+                        <p>コメント件数：<%= @article.comments.count %></p>
+                        <% @article.comments.each do |comment| %>
+                          <p><% if comment.user. profile_image.attached? %>
+                                <%= image_tag comment.user.profile_image, size: "100x100" %>
+                              <% else %>
+                                <%= image_tag "store-no-image.jpg", size: "100x100" %>
+                              <% end %></p>
+                          <%= comment.user.full_name %>
+                          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+                            <% if comment.user == current_user %>
+                            <%= link_to "削除", public_article_comment_path(comment.article, comment), method: :delete %>
+                          <% end %>
+                        <% end %>
+                      </div>
+                      <div>
+                        <%= form_with model: [:public, @article, @comment] do |f| %>
+                          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+                          <%= f.submit "送信する" %>
+                        <% end %>
                   
                        <div class = "row font-weight-bold align-items-center">
                             <div class = "col-sm-6 col-mg-4 col-lg-3 font-weight-bold align-items-center">

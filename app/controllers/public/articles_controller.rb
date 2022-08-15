@@ -2,7 +2,7 @@ class Public::ArticlesController < ApplicationController
   def new
     @store = Store.find(params[:store_id])
     @article = @store.articles.new
-    # お店を探すコード
+  # お店を探すコード
     api = URI.parse("http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=#{ENV["HOTPEPPER_API_KEY"]}&lat=#{@store.lat}&lng=#{@store.lng}&range=1&order=1&format=json")
     json = Net::HTTP.get(api)
     @result = JSON.parse(json)
@@ -16,6 +16,8 @@ class Public::ArticlesController < ApplicationController
     @store = Store.find(params[:store_id])
     @article = Article.find(params[:id])
     @tags = @article.tags.pluck(:tag).join(',')
+  # コメント機能のための変数
+    @comment = Comment.new
   end 
 
   def index

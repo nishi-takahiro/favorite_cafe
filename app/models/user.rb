@@ -7,14 +7,19 @@ class User < ApplicationRecord
   has_one_attached :profile_image
   has_many :likes, dependent: :destroy
   has_many :articles, dependent: :destroy
-  # has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
-  def get_profile_image(width,height)
-    if profile_image.attached?
-      profile_image.variant(resize_to_limit:[width,height])
-    else
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
-      profile_image.attached(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpg')
-    end
+def get_profile_image(width,height)
+  if profile_image.attached?
+    profile_image.variant(resize_to_limit:[width,height])
+  else
+    file_path = Rails.root.join('app/assets/images/no_image.jpg')
+    profile_image.attached(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpg')
   end
+end
+
+def full_name
+  first_name + last_name  
+end
+
 end
