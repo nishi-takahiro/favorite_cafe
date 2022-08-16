@@ -1,6 +1,8 @@
 class Public::UsersController < ApplicationController
   def show
    @user = current_user
+   @store = Store.find_by(params[:store_id])
+   @articles = current_user.articles.all.page(params[:page]).per(15)
   end
 
   def edit

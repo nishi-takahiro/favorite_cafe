@@ -17,6 +17,12 @@
             </div>
             <div class = "col-sm-12 col-md-8 col-lg-9">
                 <div class = "row">
+                    <div class = "col-sm-12 col-md-4 col-lg-2 small">投稿日</div>
+                    <div class = "col-sm-12 col-md-4 col-lg-4">
+                      <%= articles.created_at.strftime('%Y/%m/%d') %>
+                    </div>
+                </div>
+                <div class = "row">
                     <div class = "col-sm-12 col-md-4 col-lg-2 small">店名</div>
                     <div class = "col-sm-12 col-md-4 col-lg-4">
                       <%= articles.store_name %>
@@ -83,5 +89,11 @@
                   
             </div>
         </div> 
-     <% end %> 
+        
+     <% end %>
+    <div class = "row">
+        <%= paginate @articles %>
+    </div>
+   
+     
 </div>

@@ -5,6 +5,25 @@
       <div class = "row">
           <div class = "col-sm-12 col-mg-12 col-lg-12 px-sm-0">
               <h5 class = "col-lg-3 m-3 font-weight-bold">投稿詳細</h5>
+                <div class = "row font-weight-bold align-items-center">
+                  <div class = "col-sm-6 col-mg-4 col-lg-2 font-weight-bold align-items-center">
+                    <%= link_to public_store_articles_path, class:"btn btn-primary m-3 " do %>
+                    <i>投稿一覧</i>
+                    <% end %>
+                  </div>
+                  <% if @article.user == current_user %>
+                    <div class = "col-sm-6 col-mg-4 col-lg-2 font-weight-bold align-items-center">
+                      <%= link_to  edit_public_store_article_path, class:"btn btn-primary m-3" do %>
+                      <i>投稿編集</i>
+                      <% end %>
+                    </div>
+                    <div class = "col-sm-6 col-mg-4 col-lg-2 font-weight-bold align-items-center">
+                      <%= link_to public_store_article_path([@store], [@article]), class:"btn btn-danger m-3 ", method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+                      <i>削除</i>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </div>
                   
                   <div class = "row">
                     <div class = "col-sm-12 col-mg-8 col-lg-7">
@@ -106,50 +125,43 @@
                           </p>
                         <% end %>
                      </div>
+                  </div>       
+               </div> 
+              <div class - "row">
+                <%= form_with model: [:public, @article, @comment] do |f| %>
+                  <%= f.text_area :comment, rows: '5', size: '50',placeholder: "コメントをここに" %>
+                  <%= f.submit "送信する",class:"btn btn-primary m-3" %>
+                <% end %>
+              </div>
                      
-                     <div class = "row">
-                        <p>コメント件数：<%= @article.comments.count %></p>
-                        <% @article.comments.each do |comment| %>
-                          <p><% if comment.user. profile_image.attached? %>
-                                <%= image_tag comment.user.profile_image, size: "100x100" %>
-                              <% else %>
-                                <%= image_tag "store-no-image.jpg", size: "100x100" %>
-                              <% end %></p>
-                          <%= comment.user.full_name %>
-                          <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-                            <% if comment.user == current_user %>
-                            <%= link_to "削除", public_article_comment_path(comment.article, comment), method: :delete %>
-                          <% end %>
+              <div class = "row">
+                  <div class  = "col-sm-12 col-mg-12 col-lg-12">
+                    コメント件数：<%= @article.comments.count %>
+                  </div>
+                  <% @article.comments.each do |comment| %>
+                  <div class  = "col-sm-12 col-mg-12 col-lg-12">
+                    <div class = "row"> 
+                      <div class  = "col-sm-12 col-mg-4 col-lg-2">
+                        <% if comment.user. profile_image.attached? %>
+                          <%= image_tag comment.user.profile_image, size: "100x100" %>
+                        <% else %>
+                          <%= image_tag "store-no-image.jpg", size: "100x100" %>
                         <% end %>
                       </div>
-                      <div>
-                        <%= form_with model: [:public, @article, @comment] do |f| %>
-                          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-                          <%= f.submit "送信する" %>
+                      <div class  = "col-sm-12 col-mg-9 col-lg-8">
+                          <%= comment.user.full_name %><%= comment.created_at.strftime('%Y/%m/%d') %><br>
+                          <%= comment.comment %><br>
+                        <% if comment.user == current_user %>
+                          <%= link_to "削除", public_article_comment_path(comment.article, comment), method: :delete %>
                         <% end %>
-                  
-                       <div class = "row font-weight-bold align-items-center">
-                            <div class = "col-sm-6 col-mg-4 col-lg-3 font-weight-bold align-items-center">
-                             <%= link_to public_store_articles_path, class:"btn btn-primary m-3 " do %>
-                             <i>一覧を見る</i>
-                             <% end %>
-                           </div>
-                       
-                          <div class = "col-sm-6 col-mg-4 col-lg-3 font-weight-bold align-items-center">
-                            <%= link_to  edit_public_store_article_path, class:"btn btn-primary m-3" do %>
-                            <i>編集する</i>
-                            <% end %>
-                        </div>
-                        
-                            <div class = "col-sm-6 col-mg-4 col-lg-3 font-weight-bold align-items-center">
-                             <%= link_to public_store_article_path([@store], [@article]), class:"btn btn-danger m-3 ", method: :delete, "data-confirm" => "本当に削除しますか？" do %>
-                             <i>削除</i>
-                             <% end %>
-                         </div>
-                        
                       </div>
                     </div>
                   </div>
-          </div>
+                  
+                <% end %>
+              </div>
+
+
       </div>
+    </div>
   </div>

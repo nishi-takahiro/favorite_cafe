@@ -22,7 +22,7 @@ class Public::ArticlesController < ApplicationController
 
   def index
     @store = Store.find(params[:store_id])
-    @articles = Article.all
+    @articles = Article.all.page(params[:page]).per(15)
   end
 
   def edit
