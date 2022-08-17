@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2022_08_11_140507) do
     t.integer "user_id"
     t.integer "tag_intermediate"
     t.string "store_name"
+    t.string "address"
     t.string "store_image_id"
     t.text "store_comment"
     t.float "rate_delicious", default: 0.0, null: false
@@ -64,7 +65,7 @@ ActiveRecord::Schema.define(version: 2022_08_11_140507) do
     t.float "rate_cost", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "address"
+    t.string "store_address"
   end
 
   create_table "comments", force: :cascade do |t|
