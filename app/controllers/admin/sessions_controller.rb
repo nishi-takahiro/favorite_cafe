@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
+
+  def after_sign_in_path_for(resource)
+   case resource
+    when Admin
+      admin_path
+   end
+  end
+
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

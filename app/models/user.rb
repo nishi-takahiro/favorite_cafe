@@ -19,7 +19,7 @@ def get_profile_image(width,height)
 end
 
 def full_name
-  first_name + last_name  
+  last_name  + " " +  first_name
 end
 
 end

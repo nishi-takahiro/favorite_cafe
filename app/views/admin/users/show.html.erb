@@ -1,2 +1,59 @@
 <h1>Admin::Users#show</h1>
 <p>Find me in app/views/admin/users/show.html.erb</p>
+
+<div class = "container">
+    <div class = "row m-4">
+        <h4 class = "col-sm-12 col-mg-10 col-lg-9">
+            <strong><%= @user.last_name %><%= @user.first_name %></strong>さんの<strong>会員詳細</strong>
+        </h4>
+    </div>
+        
+    <div class = "row">
+        <div class = "col-sam-12 col-mg-11 col-lg-11">
+                
+            <div class = "row m-3">
+                <div class = "col-sm-4 col-mg-4 col-lg-3 font-weight-bold">会員ID</div>
+                 <div class = "col-sm-8 col-mg-6 col-lg-6"><%= @user.id %></div>
+            </div>
+            
+            <div class = "row m-3">
+                <div class = "col-sm-4 col-mg-4 col-lg-3 font-weight-bold">氏名</div>
+                 <div class = "col-sm-8 col-mg-6 col-lg-6"><%= @user.first_name %>　<%= @user.last_name %></div>
+            </div>
+              <div class = "row m-3">
+                <div class = "col-sm-4 col-mg-4 col-lg-3 font-weight-bold">フリガナ</div>
+                 <div class = "col-sm-8 col-mg-6 col-lg-6"><%= @user.first_name_kana %>　<%= @user.last_name_kana %></div>
+            </div>
+              <div class = "row m-3">
+                <div class = "col-sm-4 col-mg-4 col-lg-3 font-weight-bold">メールアドレス</div>
+                 <div class = "col-sm-8 col-mg-6 col-lg-6"><%= @user.email %></div>
+            </div>
+              <div class = "row m-3">
+                <div class = "col-sm-4 col-mg-4 col-lg-3 font-weight-bold">会員ステータス</div>
+                 <div class = "col-sm-8 col-mg-6 col-lg-6 text-success">
+                     <% if @user.is_deleted %>
+                     <div style = "color:#808080">
+                     <%= "退会" %>
+                     </div>
+                     <% else %>
+                     <%= "有効" %>
+                     <% end %>
+                 </div>
+            </div>
+            
+             <div class = "row m-3">
+                 <div class = "col-sm-3 col-mg-3 col-lg-3">
+                     <%= link_to "編集する",  edit_admin_user_path(@user), class: "btn btn-success", style: "width:150" %>
+                 </div>
+                 <div class = "col-sm-3 col-mg-3 col-lg-3">
+                   <%= link_to  admin_articles_path, class: "btn btn-primary", style: "width:170" do %>
+                   <%= @user.last_name %>さんの投稿一覧
+                   <% end %>
+                 </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+</div>

@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
+ 
+  def after_sign_up_path_for(resource)
+   case resource
+     when User
+       public_users_my_page_path
+   end
+  end
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
