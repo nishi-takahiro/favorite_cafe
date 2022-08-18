@@ -4,15 +4,18 @@
 <div class = "container">
     <div clss = "row">
       <div class = "col-sm-12 col-md-12 col-lg-12">
+       
+         <% @articles.each do |articles| %>
           <div class = "row"> 
-            <% @articles.each do |articles| %>
                 <div class = "col-sm-12 col-md-4 col-lg-3">
                     <div class = "row m-1">
-                        <%= articles.id %>
-                        <% if articles.store_image.attached? %>
-                        <%= image_tag articles.store_image, size: "200x200" %>
-                        <% else %>
-                        <%= image_tag "store-no-image.jpg", size: "200x200" %>
+                        <%= link_to admin_article_path(@articles) do %>
+                            <%= articles.id %>
+                            <% if articles.store_image.attached? %>
+                            <%= image_tag articles.store_image, size: "200x200" %>
+                            <% else %>
+                            <%= image_tag "store-no-image.jpg", size: "200x200" %>
+                            <% end %>
                         <% end %>
                     </div> 
                 </div>
@@ -92,12 +95,10 @@
                             </script>
                         </div>
                     </div>
-                    
                 </div>
-          　　 <% end %>      
             </div>
-       
-        
+        <% end %>  
+        <div class = "m-4"><%= paginate @articles %></div>
       </div>
     </div> 
 </div>
