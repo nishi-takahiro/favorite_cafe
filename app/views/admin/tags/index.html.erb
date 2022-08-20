@@ -1,2 +1,47 @@
 <h1>Admin::Tags#index</h1>
 <p>Find me in app/views/admin/tags/index.html.erb</p>
+<div class = "container">
+    <div class = "row">
+        <div class = "col-sm-12 col-mg-11 col-lg-10 px-sm-0">
+            
+            <h5 class = "col-lg-3 m-5 font-weight-bold">タグ一覧・追加</h5>
+            
+            <%= form_with model: @tag, url: admin_tags_path, method: :post do |f| %>
+            <div class = "row">
+                <div class = "col-lg-2 ml-2">タグ名</div>
+                <div class = "col-lg-4">
+                    <div class = "form-group">
+                        <%= f.text_field :tag, size:35, autofocus: true %>
+                    </div>
+                </div>
+                <div class = "col-lg-3">
+                        <%= f.submit "新規登録", style: "width:120", class: "btn btn-success" %> 
+                </div>
+                <% end %>
+            </div>
+            
+            
+            <div class = "row">
+                <div class = "col-lg-11">
+                    <table class = "table">
+                        <thead>
+                            <tr>
+                                <th>タグ</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                         <% @tag_all.each do |tags| %>
+                        <tbody>
+                            <tr>
+                                <th><%= tags.tag %></th>
+                                <th><%= link_to "編集する", edit_admin_tag_path(tags), class: "btn btn-success" %></th>
+                            </tr>
+                        </tbody>
+                        <% end %>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

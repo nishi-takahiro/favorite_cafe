@@ -35,7 +35,9 @@ Rails.application.routes.draw do
   
   namespace :admin do
     resources :users
-    resources :articles
+    resources :articles do
+        resources :comments, only: [:create, :destroy]
+    end
     resources :tags
   end
   

@@ -47,6 +47,12 @@
                   <% end %>
                 </li>
                 <li>
+                  <%= link_to admin_tags_path, class: "nav-link text-dark" do %>
+                  <i class = "fas fa-address-book"></i>タグ一覧
+                  <% end %>
+                </li>
+                 
+                <li>
                   <%= link_to destroy_admin_session_path, method: :delete,class: "nav-link text-dark" do %>
                   <i class = "fas fa-sign-out-alt"></i>ログアウト
                   <% end %>
@@ -79,7 +85,7 @@
         Powered by <a href="http://webservice.recruit.co.jp/">ホットペッパー Webサービス</a>
       </div> 
       <div class = "row d-flex align-items-center justify-content-center">
-        Copyright © Infratop Inc. All Rights Reserved.
+        Copyright © Favorite Cafe. All Rights Reserved.
       </div> 
     </footer>
     
