@@ -13,12 +13,14 @@ Rails.application.routes.draw do
   scope module: :public do
     root 'homes#top'
     get '/about' => 'homes#about', as: 'about'
+   
   end
   
   namespace :public do
     get 'users/my_page' => 'users#show'
     get 'users/confirmation' => 'users#confirmation'
     patch 'withdraw' => 'users#withdraw'
+     get 'search' => "searches#search"
     resources :users
     resources :stores do
       resources :articles

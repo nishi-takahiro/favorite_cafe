@@ -21,7 +21,8 @@ class Public::ArticlesController < ApplicationController
   end 
 
   def index
-    @store = Article.find_by(params[:article_id]).store
+    @article = Article.find_by(params[:article_id])
+    @store = @article.store
     @articles = Article.all.page(params[:page]).per(15)
   end
 

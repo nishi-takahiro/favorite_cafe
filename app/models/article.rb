@@ -6,11 +6,25 @@ class Article < ApplicationRecord
     
     belongs_to :user
     belongs_to :store
-   
     
     has_one_attached :store_image
     
-    # いいね機能メソッド
+  # searchの検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @article = Article.where(['store_comment LIKE(?) OR store_name LIKE(?) OR address LIKE(?)', "#{word}", "#{word}" "#{word}"])
+    elsif search == "forward_match"
+      @article = Article.where(['store_comment LIKE(?) OR store_name LIKE(?) OR address LIKE(?)',"#{word}%", "#{word}%", "#{word}%"])
+    elsif search == "backward_match"
+      @article = Article.where(['store_comment LIKE(?) OR store_name LIKE(?) OR address LIKE(?)',"%#{word}", "%#{word}", "%#{word}"])
+    elsif search == "partial_match"
+      @article = Article.where(['store_comment LIKE(?) OR store_name LIKE(?) OR address LIKE(?)',"%#{word}%", "%#{word}%", "%#{word}%"])
+    else
+      @article = Article.all
+    end
+  end  
+  
+   # いいね機能メソッド
   def liked_by?(user)
     likes.exists?(user_id: user.id)
   end
@@ -22,7 +36,7 @@ class Article < ApplicationRecord
     end
   end
   
-    # タグ付けの更新用メソッド
+   # タグ付けの更新用メソッド
   def update_tags(latest_tags)
         if self.tags.empty?
           # 既存のタグがなかったら追加だけ行う

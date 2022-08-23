@@ -2,10 +2,10 @@
 <p>Find me in app/views/public/articles/index.html.erb</p>
 <div class = "container">
      <% @articles.each do |articles| %>
-        <div class = "row">
+        <div class = "row mt-3">
             <div class = "col-sm-12 col-md-4 col-lg-3">
               <div class = "row m-1">
-                 <%= link_to public_store_article_path([@store], [articles]) do %>
+                 <%= link_to public_store_article_path([articles.store], [articles]) do %>
                      <%= articles.id %>
                      <% if articles.store_image.attached? %>
                        <%= image_tag articles.store_image, size: "200x200" %>
@@ -16,6 +16,12 @@
                </div> 
             </div>
             <div class = "col-sm-12 col-md-8 col-lg-9">
+                <div class = "row">
+                    <div class = "col-sm-12 col-md-4 col-lg-2 small">投稿者</div>
+                    <div class = "col-sm-12 col-md-4 col-lg-4">
+                      <%= articles.user.full_name %>
+                    </div>
+                </div>
                 <div class = "row">
                     <div class = "col-sm-12 col-md-4 col-lg-2 small">投稿日</div>
                     <div class = "col-sm-12 col-md-4 col-lg-4">
@@ -85,7 +91,12 @@
                       </script>
                     </div>
                 </div>
-                  
+                <div class = "row">
+                <div class = "col-sm-12 col-md-4 col-lg-2 small">コメント数</div>
+                    <div class = "col-sm-12 col-md-4 col-lg-4">
+                        <%= articles.comments.count %>
+                    </div>
+                </div>
                   
             </div>
         </div> 

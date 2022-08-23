@@ -27,7 +27,7 @@
                 <div class = "row m-1">
                     <div class = "col-sm-12 col-md-4 col-lg-2">
                       <div class = "row ">
-                         <%= link_to public_store_article_path([@store], [articles]) do %>
+                         <%= link_to public_store_article_path([articles.store], [articles]) do %>
                              <% if articles.store_image.attached? %>
                                <%= image_tag articles.store_image, size: "100x100" %>
                              <% else %>
