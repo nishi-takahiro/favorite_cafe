@@ -30,6 +30,11 @@
                   <i class = "fas fa-home"></i>新規投稿
                   <% end %>
                 </li>
+                 <li>
+                  <%= link_to public_articles_path, class: "nav-link text-dark" do %>
+                  <i class = "fas fa-home"></i>投稿一覧
+                  <% end %>
+                </li>
                 <li>
                   <%= link_to destroy_user_session_path, method: :delete, class: "nav-link text-dark" do %>
                   <i class = "fas fa-sign-out-alt"></i>ログアウト

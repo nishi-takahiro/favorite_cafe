@@ -10,7 +10,7 @@
           <div class = "row"> 
                 <div class = "col-sm-12 col-md-4 col-lg-3">
                     <div class = "row m-1">
-                        <%= link_to admin_article_path(@articles) do %>
+                        <%= link_to admin_article_path(articles) do %>
                             <%= articles.id %>
                             <% if articles.store_image.attached? %>
                             <%= image_tag articles.store_image, size: "200x200" %>
