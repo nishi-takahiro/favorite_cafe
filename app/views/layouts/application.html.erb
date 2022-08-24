@@ -19,6 +19,7 @@
             <a class = "rogo_image"><%= link_to image_tag('no_image.jpg'),root_path %></a>
           
            <ul class = "navbar-nav ml-auto m-2">
+             <!--ユーザーや管理者がログインをしているか確認-->
               <% if user_signed_in? %>
                 <li>
                   <%= link_to public_users_my_page_path, class: "nav-link text-dark" do %>

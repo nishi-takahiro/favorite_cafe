@@ -113,6 +113,7 @@
                   <div class  = "col-sm-12 col-mg-12 col-lg-12">
                     コメント件数：<%= @article.comments.count %>
                   </div>
+                  <!--投稿に関するコメントを表示-->
                   <% @article.comments.each do |comment| %>
                   <div class  = "col-sm-12 col-mg-12 col-lg-12">
                     <div class = "row"> 

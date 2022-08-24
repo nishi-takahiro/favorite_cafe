@@ -2,7 +2,7 @@
 <p>Find me in app/views/public/articles/index.html.erb</p>
 <div class = "container">
      <% @articles.each do |articles| %>
-        <div class = "row mt-3">
+        <div class = "row mt-2 border-top">
             <div class = "col-sm-12 col-md-4 col-lg-3">
               <div class = "row m-1">
                  <%= link_to public_store_article_path([articles.store], [articles]) do %>

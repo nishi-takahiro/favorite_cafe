@@ -16,7 +16,7 @@ class Admin::TagsController < ApplicationController
   
   def destroy
     tag = Tag.find(params[:id])
-    tag.destroy(tag_params)
+    tag.destroy
     redirect_to admin_tags_path
   end
   

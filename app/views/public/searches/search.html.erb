@@ -1,7 +1,7 @@
 <h2>Results index</h2>
 
 <table class="table table-hover table-inverse">
-  <!--検索対象モデルがUserの時 -->
+  <!--検索対象モデルがTagの時 -->
   <% if @range == "Tag" %>
     <tbody>
       <% @tag.each do |tag| %>
@@ -11,12 +11,32 @@
       <% end %>
     </tbody>
   <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+    <!--検索対象モデルがTagではない時(= 検索対象モデルがArticleArticleの時) -->
+    <thead>
+      <tr>
+        <th>投稿日</th>
+        <th>投稿者</th>
+        <th>店舗名</th>
+        <th>店舗住所</th>
+        <th>コメント数</th>
+      </tr>
+    </thead>
     <tbody>
       <% @article.each do |article| %>
         <tr>
-          <td><%= article.store_name %></td>
+           <td>
+            <%= article.created_at.strftime('%Y/%m/%d') %>
+          </td>
+          <td>
+            <%= article.user.full_name %>
+          </td>
+          <td>
+            <%= link_to public_store_article_path([article.store],[article]) do %>
+            <%= article.store_name %>
+            <% end %>
+          </td>
           <td><%= article.address %></td>
+           <td><%= article.comments.count %></td>
         </tr>
       <% end %>
     </tbody>

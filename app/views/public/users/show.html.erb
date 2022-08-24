@@ -1,5 +1,6 @@
 
 <div class = "container">
+    <!--ユーザーのプロフィール情報-->
     <div class = "row">
         <div class = "col-sm-12 col-md-2 col-lg-2 mt-1 mb-1", style="background-color: #ffe4c4;">
           <div class = "m-2 font-weight-bold">マイページ</div>
@@ -21,12 +22,12 @@
                  <% end %>
              </div>
         </div>
-        
+        <!--ユーザーの投稿一覧-->
         <div class = "col-sm-12 col-md-8 col-lg-8">
             <% @articles.each do |articles| %>
-                <div class = "row m-1">
+                <div class = "row m-1 border-top">
                     <div class = "col-sm-12 col-md-4 col-lg-2">
-                      <div class = "row ">
+                      <div class = "row mt-1">
                          <%= link_to public_store_article_path([articles.store], [articles]) do %>
                              <% if articles.store_image.attached? %>
                                <%= image_tag articles.store_image, size: "100x100" %>

@@ -4,7 +4,7 @@ class Admin::CommentsController < ApplicationController
     @store = @article.store
     @comment = Comment.find_by(article_id: params[:article_id])
     @comment.destroy
-    redirect_to admin_article_path(@store.id, params[:article_id] )
+    redirect_to admin_article_path(params[:article_id] )
   end
 
   private

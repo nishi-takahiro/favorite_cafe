@@ -2,6 +2,7 @@ class Public::CommentsController < ApplicationController
     
   def create
     @article = Article.find(params[:article_id])
+    #アーティクルがストアにネストしており、アーティクルからストアの情報をがとれるのでstore.idをとるための準備
     @store = @article.store
     @comment = current_user.comments.new(comment_params)
     @comment.article_id = @article.id
