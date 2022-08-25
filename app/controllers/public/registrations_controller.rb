@@ -3,7 +3,7 @@
 class Public::RegistrationsController < Devise::RegistrationsController
  
   def after_sign_up_path_for(resource)
-   case resource
+     case resource
      when User
        public_users_my_page_path
    end

@@ -29,9 +29,9 @@ class Public::UsersController < ApplicationController
   def confirmation
   end
   
+  # 退会ステータス
   def withdraw
-    # 退会ステータス
-    @user = User.find(current_customer[:id])
+    @user = User.find(current_user[:id])
     @user.update(is_deleted: true)
     reset_session
     redirect_to root_path

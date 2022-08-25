@@ -1,8 +1,7 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+
    <!--ユーザー会員情報-->
 <div class = "container">
-    <div class = "row">
+    <div class = "row m-2">
  
     <!--ユーザー会員詳細-->
       <div class = "col-sm-12 col-md-6 col-lg-4">
@@ -69,90 +68,92 @@
         <div class = "col-sm-12 col-md-5 col-lg-7">
             <div class = "row">
                 <h6 class = "col-sm-12 col-md-10 col-lg-9">
-                    <strong><%= @user.last_name %>さんの投稿一覧</strong>
+                    <strong>投稿一覧</strong>
                 </h6>
             </div>
         
-        <% @articles.each do |articles| %>
-            <div class = "row mt-2 border-top"> 
-                <div class = "col-sm-12 col-md-12 col-lg-12 m-1">
-                    <%= link_to admin_article_path(articles) do %>
-                        <% if articles.store_image.attached? %>
-                            <%= image_tag articles.store_image, size: "80x80" %>
-                        <% else %>
-                            <%= image_tag "store-no-image.jpg", size: "80x80" %>
+            <% @articles.each do |articles| %>
+                <div class = "row mt-2 border-top"> 
+                    <div class = "col-sm-12 col-md-12 col-lg-12 m-1">
+                        <%= link_to admin_article_path(articles) do %>
+                            <% if articles.store_image.attached? %>
+                                <%= image_tag articles.store_image, size: "80x80" %>
+                            <% else %>
+                                <%= image_tag "store-no-image.jpg", size: "80x80" %>
+                            <% end %>
                         <% end %>
-                    <% end %>
+                    </div>
+                    <div class = "col-sm-12 col-md-12 col-lg-12">
+                        <div class = "row">
+                            <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><投稿者></div>
+                            <%= link_to admin_article_path(articles) do %>
+                              <%= articles.user.full_name %>
+                            <% end %>
+                        </div>
+                        <div class = "row">
+                            <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><投稿日></div>
+                            <%= articles.created_at.strftime('%Y/%m/%d') %>
+                        </div>
+                        <div class = "row">
+                            <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><店名></div>
+                            <%= articles.store_name %>
+                        </div>
+                        <div class = "row">
+                            <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><紹介文></div>
+                            <%= articles.store_comment %>
+                        </div>
+                        <div class = "row">
+                            <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><美味しさ></div>
+                            <div id="rate_delicious<%= articles.id%>"></div>
+                            <script>
+                                $('#rate_delicious<%= articles.id%>').raty({
+                                size      : 36,
+                                starOff   : '<%= asset_path('star-off.png') %>',
+                                starOn    : '<%= asset_path('star-on.png') %>',
+                                starHalf  : '<%= asset_path('star-half.png') %>',
+                                half      : true,
+                                readOnly: true,
+                                score: <%= articles.rate_delicious %>,
+                                });
+                            </script>
+                        </div>
+                        <div class = "row">
+                            <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><雰囲気></div>
+                            <div id="rate_atmospher<%= articles.id%>"></div>
+                            <script>
+                                $('#rate_atmospher<%= articles.id%>').raty({
+                                size      : 36,
+                                starOff   : '<%= asset_path('star-off.png') %>',
+                                starOn    : '<%= asset_path('star-on.png') %>',
+                                starHalf  : '<%= asset_path('star-half.png') %>',
+                                half      : true,
+                                readOnly: true,
+                                score: <%= articles.rate_atmospher %>,
+                                });
+                            </script>
+                        </div>
+                        <div class = "row">
+                            <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><コストパフォーマンス></div>
+                            <div id="rate_cost<%= articles.id%>"></div>
+                            <script>
+                                $('#rate_cost<%= articles.id%>').raty({
+                                size      : 36,
+                                starOff   : '<%= asset_path('star-off.png') %>',
+                                starOn    : '<%= asset_path('star-on.png') %>',
+                                starHalf  : '<%= asset_path('star-half.png') %>',
+                                half      : true,
+                                readOnly: true,
+                                score: <%= articles.rate_cost %>,
+                                });
+                            </script>
+                        </div>
+                        <div class = "row">
+                            <div class  = "col-sm-12 col-mg-4 col-lg-4 small font-weight-bold"><コメント件数></div>
+                            <%= articles.comments.count %>
+                        </div>
+                    </div>
                 </div>
-                <div class = "col-sm-12 col-md-12 col-lg-12">
-                    <div class = "row">
-                        <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><投稿者></div>
-                        <%= articles.user.full_name %>
-                    </div>
-                    <div class = "row">
-                        <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><投稿日></div>
-                        <%= articles.created_at.strftime('%Y/%m/%d') %>
-                    </div>
-                    <div class = "row">
-                        <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><店名></div>
-                        <%= articles.store_name %>
-                    </div>
-                    <div class = "row">
-                        <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><紹介文></div>
-                        <%= articles.store_comment %>
-                    </div>
-                    <div class = "row">
-                        <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><美味しさ></div>
-                        <div id="rate_delicious<%= articles.id%>"></div>
-                        <script>
-                            $('#rate_delicious<%= articles.id%>').raty({
-                            size      : 36,
-                            starOff   : '<%= asset_path('star-off.png') %>',
-                            starOn    : '<%= asset_path('star-on.png') %>',
-                            starHalf  : '<%= asset_path('star-half.png') %>',
-                            half      : true,
-                            readOnly: true,
-                            score: <%= articles.rate_delicious %>,
-                            });
-                        </script>
-                    </div>
-                    <div class = "row">
-                        <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><雰囲気></div>
-                        <div id="rate_atmospher<%= articles.id%>"></div>
-                        <script>
-                            $('#rate_atmospher<%= articles.id%>').raty({
-                            size      : 36,
-                            starOff   : '<%= asset_path('star-off.png') %>',
-                            starOn    : '<%= asset_path('star-on.png') %>',
-                            starHalf  : '<%= asset_path('star-half.png') %>',
-                            half      : true,
-                            readOnly: true,
-                            score: <%= articles.rate_atmospher %>,
-                            });
-                        </script>
-                    </div>
-                    <div class = "row">
-                        <div class = "col-sm-12 col-md-4 col-lg-4 small font-weight-bold"><コストパフォーマンス></div>
-                        <div id="rate_cost<%= articles.id%>"></div>
-                        <script>
-                            $('#rate_cost<%= articles.id%>').raty({
-                            size      : 36,
-                            starOff   : '<%= asset_path('star-off.png') %>',
-                            starOn    : '<%= asset_path('star-on.png') %>',
-                            starHalf  : '<%= asset_path('star-half.png') %>',
-                            half      : true,
-                            readOnly: true,
-                            score: <%= articles.rate_cost %>,
-                            });
-                        </script>
-                    </div>
-                    <div class = "row">
-                        <div class  = "col-sm-12 col-mg-4 col-lg-4 small font-weight-bold"><コメント件数></div>
-                        <%= articles.comments.count %>
-                    </div>
-                </div>
-            </div>
-        <% end %>  
+            <% end %>  
         </div>
     </div>
 </div>

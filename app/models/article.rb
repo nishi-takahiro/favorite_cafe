@@ -9,6 +9,10 @@ class Article < ApplicationRecord
     
     has_one_attached :store_image
     
+    validates :rate_delicious, numericality: {
+    less_than_or_equal_to: 5,
+    greater_than_or_equal_to: 1}, presence: true
+    
   # searchの検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"

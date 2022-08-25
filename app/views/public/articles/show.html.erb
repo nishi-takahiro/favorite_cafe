@@ -118,7 +118,7 @@
                               ♥<%= @article.likes.count %> いいね
                             <% end %>
                           </p>
-                          <% else %>
+                        <% else %>
                           <p>
                             <%= link_to public_article_likes_path(@article), method: :post do %>
                               ♡<%= @article.likes.count %> いいね
