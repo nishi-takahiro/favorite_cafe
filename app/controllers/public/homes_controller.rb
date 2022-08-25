@@ -1,8 +1,8 @@
 class Public::HomesController < ApplicationController
   def top
-    
+    # 地図上にお店の情報を表示するためのデータ設定
     @stores = Store.all
-    @article = Store.find_by(params[:article_id])
+    @article = Article.all
   end
 
   def about
