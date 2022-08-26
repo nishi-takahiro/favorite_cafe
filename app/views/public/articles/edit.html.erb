@@ -3,6 +3,18 @@
 
 
 <div class = "container">
+     <div class = "row">
+        <div class = "col-sam-12 col-md-12 col-lg-12">
+          <% if @article.errors.any? %>
+          <h4><%= @article.errors.count %>件のエラーが発生しました</h4>
+          <ul>
+            <% @article.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+          <% end %>
+        </div>
+      </div>
     <div class = "row">
         <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold">投稿編集</div>
     </div>
@@ -64,7 +76,7 @@
             </div>
         </div>
 
-   <div class = "row">
+   <div class = "row mb-3">
      <%= f.submit "編集内容を保存", class: "btn btn-success" %>
      <% end %>
    </div>

@@ -7,9 +7,23 @@ class Article < ApplicationRecord
     belongs_to :user
     belongs_to :store
     
+    # storeの画像
     has_one_attached :store_image
     
+    # バリデーション
+    validates :store_name, length: { maximum: 500 }, presence: true
+    validates :address, length: { maximum: 500 }
+    validates :store_comment, length: { maximum:2000 }, presence: true
+    # 5段階評価
     validates :rate_delicious, numericality: {
+    less_than_or_equal_to: 5,
+    greater_than_or_equal_to: 1}, presence: true
+    
+    validates :rate_atmospher, numericality: {
+    less_than_or_equal_to: 5,
+    greater_than_or_equal_to: 1}, presence: true
+    
+    validates :rate_cost, numericality: {
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1}, presence: true
     

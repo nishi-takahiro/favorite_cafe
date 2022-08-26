@@ -17,7 +17,7 @@
                     <div class = "row">
                         <div class = "col-sm-12 col-md-4 col-lg-2 small">投稿者</div>
                         <div class = "col-sm-12 col-md-4 col-lg-4">
-                            <%= link_to admin_article_path(articles) do %>
+                            <%= link_to admin_user_path(articles.user) do %>
                               <%= articles.user.full_name %>
                             <% end %>
                         </div>
@@ -31,7 +31,9 @@
                     <div class = "row">
                         <div class = "col-sm-12 col-md-4 col-lg-2 small">店名</div>
                         <div class = "col-sm-12 col-md-4 col-lg-4">
-                            <%= articles.store_name %>
+                            <%= link_to admin_article_path(articles) do %>
+                              <%= articles.store_name %>
+                            <% end %>
                         </div>
                     </div>
                     <div class = "row">

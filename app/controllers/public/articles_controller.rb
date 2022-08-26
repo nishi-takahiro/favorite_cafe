@@ -23,7 +23,7 @@ class Public::ArticlesController < ApplicationController
   def index
     @article = Article.find_by(params[:article_id])
     @store = @article.store
-    @articles = Article.all.page(params[:page]).per(15)
+    @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def edit
@@ -42,20 +42,19 @@ class Public::ArticlesController < ApplicationController
        @article.save_tags(tags)
          redirect_to  public_store_article_path([store], [@article])
     else
-      @article = Article.new
       render :new
    end
   end
   
   def update
-    store = Store.find(params[:store_id])
+    @store = Store.find(params[:store_id])
     @article = current_user.articles.find(params[:id])
     tags = params[:article][:tag].split(',')
     if @article.update(article_params)
        @article.update_tags(tags)
          redirect_to public_store_article_path([store], [@article])
     else
-      render 'edit'
+      render :edit
     end
   end
   

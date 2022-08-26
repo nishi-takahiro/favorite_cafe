@@ -130,7 +130,7 @@
                </div> 
               <div class - "row">
                 <%= form_with model: [:public, @article, @comment] do |f| %>
-                  <%= f.text_area :comment, rows: '5', size: '50',placeholder: "コメントをここに" %>
+                  <%= f.text_area :comment, rows: '5', size: '50',placeholder: "コメント入力" %>
                   <%= f.submit "送信する",class:"btn btn-primary m-3" %>
                 <% end %>
               </div>

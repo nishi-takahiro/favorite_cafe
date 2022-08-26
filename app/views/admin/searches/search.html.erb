@@ -2,15 +2,16 @@
 
 <!--検索フォーム-->
 <div class="search_form">
-  <%= form_with url: public_search_path, local: true, method: :get do |f| %>
+  <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
     <%= f.text_field :word, placeholder: "投稿を検索する" %>
-    <%= f.select :range, options_for_select([['Article'], ['User']]) %>
+    <%= f.select :range, options_for_select([['Article'], ['Comment'], ['User']]) %>
     <%= f.select :search, options_for_select([ ["部分一致","partial_match"],["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"]]) %>
     <%= f.submit "検索", class: "btn btn-primary" %>
   <% end %>
 </div>
 
 <table class="table table-hover table-inverse">
+  <!--検索からきたモデル（Article,Comment,User）を判定していく-->
   <!--検索対象モデルがArticleの時 -->
  <% if @range == "Article" %>
     <thead>
@@ -26,23 +27,37 @@
     <tbody>
       <% @article.each do |article| %>
         <tr>
-           <td>
-            <%= article.created_at.strftime('%Y/%m/%d') %>
-          </td>
-          <td>
-            <%= article.user.full_name %>
-          </td>
-          <td>
-            <%= link_to public_store_article_path([article.store],[article]) do %>
-            <%= article.store_name %>
-            <% end %>
-          </td>
+          <td><%= article.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= article.user.full_name %></td>
+          <td><%= article.store_name %></td>
           <td><%= article.address %></td>
           <td><%= article.likes.count %></td>
           <td><%= article.comments.count %></td>
         </tr>
       <% end %>
     </tbody>
+    
+  <!--検索対象モデルがArticleではない時(= 検索対象モデルがCommentの時) -->
+  <% elsif @range == "Comment" %>  
+    <thead>
+      <tr>
+        <th>投稿日</th>
+        <th>投稿者</th>
+        <th>店舗名</th>
+        <th>店舗住所</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @comment.each do |comment| %>
+        <tr>
+          <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+          <td><%= comment.user.full_name %></td>
+          <td><%= comment.article.store_name %></td>
+          <td><%= comment.comment %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <!--検索対象モデルがCommentではない時(= 検索対象モデルがUserの時) -->  
   <% elsif @range == "User" %>
     <thead>
       <th>ユーザー名</th>
@@ -50,7 +65,6 @@
       <th>全いいね数</th>
     </thead>
     <tbody>
-      <!--検索対象モデルがArticleではない時(= 検索対象モデルがUserの時) -->
       <% @user.each do |user| %>
         <tr>
           <td><%= user.full_name %></td>
@@ -59,6 +73,7 @@
         </tr>
       <% end %>
     </tbody>
+  
     
    
   <% end %>
