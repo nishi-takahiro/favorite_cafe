@@ -13,7 +13,7 @@
 <table class="table table-hover table-inverse">
   <!--検索からきたモデル（Article,Comment,User）を判定していく-->
   <!--検索対象モデルがArticleの時 -->
- <% if @range == "Article" %>
+  <% if @range == "Article" %>
     <thead>
       <tr>
         <th>投稿日</th>
@@ -29,7 +29,11 @@
         <tr>
           <td><%= article.created_at.strftime('%Y/%m/%d') %></td>
           <td><%= article.user.full_name %></td>
-          <td><%= article.store_name %></td>
+          <td>
+            <%= link_to admin_article_path(article) do %>
+             <%= article.store_name %>
+            <% end %>
+          </td>
           <td><%= article.address %></td>
           <td><%= article.likes.count %></td>
           <td><%= article.comments.count %></td>
@@ -38,13 +42,13 @@
     </tbody>
     
   <!--検索対象モデルがArticleではない時(= 検索対象モデルがCommentの時) -->
-  <% elsif @range == "Comment" %>  
+  <% elsif @range == "Comment" %>
     <thead>
       <tr>
         <th>投稿日</th>
         <th>投稿者</th>
         <th>店舗名</th>
-        <th>店舗住所</th>
+        <th>コメント</th>
       </tr>
     </thead>
     <tbody>
@@ -52,7 +56,11 @@
         <tr>
           <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
           <td><%= comment.user.full_name %></td>
-          <td><%= comment.article.store_name %></td>
+          <td>
+            <%= link_to admin_article_path(comment.article) do %>
+             <%= comment.article.store_name %>
+            <% end %>
+          </td>
           <td><%= comment.comment %></td>
         </tr>
       <% end %>
@@ -67,7 +75,11 @@
     <tbody>
       <% @user.each do |user| %>
         <tr>
-          <td><%= user.full_name %></td>
+          <td>
+            <%= link_to admin_user_path(user) do %>
+              <%= user.full_name %>
+            <% end %>
+          </td>
           <td><%= user.articles.count %></td>
           <td><%= user.likes.count %></td>
         </tr>

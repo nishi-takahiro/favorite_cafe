@@ -23,7 +23,6 @@ class Public::StoresController < ApplicationController
     if @store.save
       redirect_to new_public_store_article_path(@store)
     else
-      @store = Store.new
       render 'new'
     end
   end
