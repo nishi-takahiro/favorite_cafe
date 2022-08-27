@@ -50,10 +50,35 @@ class Article < ApplicationRecord
   end
     
   # タグ付けの新規投稿用メソッド  
-  def save_tags(tags)
-      tags.each do |new_tags|
-      self.tags.find_or_create_by(tag: new_tags)
+  def save_tags(sent_tags)
+    # タグが存在していれば、タグの名前を配列として全て取得
+     current_tags = self.tags.pluck(:tag) unless self.tags.nil?
+    # 現在取得したタグから送られてきたタグを除いてoldtagとする
+    old_tags = current_tags - sent_tags
+    # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
+    new_tags = sent_tags - current_tags
+
+    # 古いタグを消す
+    old_tags.each do |old|
+      self.tags.delete Tag.find_by(tag: old)
     end
+    
+    new_tags.each do |new|
+      tag = Tag.find_by(tag: new.strip)
+     
+    
+      
+      if tag
+        tags << tag
+      else
+        tag = Tag.create!(tag: new.strip) 
+         tags << tag
+      end
+        
+
+      
+     end
+  
   end
   
    # タグ付けの更新用メソッド
@@ -67,7 +92,7 @@ class Article < ApplicationRecord
           # 更新対象のタグがなかったら既存のタグをすべて削除
           # 既に保存がされていたら既に登録されているタグの内容を削除
             self.tags.each do |tag|
-            self.tags.delete(tag)
+            self.tags.delete(tag.strip)
           end
         else
             # 既存のタグも更新対象のタグもある場合は差分更新
