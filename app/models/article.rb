@@ -1,8 +1,10 @@
 class Article < ApplicationRecord
     has_many :likes, dependent: :destroy
     has_many :comments, dependent: :destroy
+    #articlesテーブルから中間テーブルに対する関連付け
     has_many :tag_intermediates, dependent: :destroy
-    has_many :tags, through: :tag_intermediates
+    #articlesテーブルから中間テーブルを介してTagsテーブルへの関連付け
+    has_many :tags, through: :tag_intermediates, dependent: :destroy
     
     belongs_to :user
     belongs_to :store

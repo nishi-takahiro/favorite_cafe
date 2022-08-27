@@ -111,28 +111,34 @@
                           </td>
                         </tr>
                      </table>
+                     <!--いいね機能-->
                      <div class = "row">
-                        <% if @article.liked_by?(current_user) %>
-                          <p>
-                            <%= link_to  public_article_likes_path(@article), method: :delete do %>
-                              ♥<%= @article.likes.count %> いいね
-                            <% end %>
-                          </p>
-                        <% else %>
-                          <p>
-                            <%= link_to public_article_likes_path(@article), method: :post do %>
-                              ♡<%= @article.likes.count %> いいね
-                            <% end %>
-                          </p>
+                       <% if  current_user %>
+                          <% if @article.liked_by?(current_user) %>
+                            <p>
+                              <%= link_to  public_article_likes_path(@article), method: :delete do %>
+                                ♥<%= @article.likes.count %> いいね
+                              <% end %>
+                            </p>
+                          <% else %>
+                            <p>
+                              <%= link_to public_article_likes_path(@article), method: :post do %>
+                                ♡<%= @article.likes.count %> いいね
+                              <% end %>
+                            </p>
+                          <% end %>
                         <% end %>
                      </div>
                   </div>       
                </div> 
+               <!--コメント機能-->
               <div class - "row">
-                <%= form_with model: [:public, @article, @comment] do |f| %>
-                  <%= f.text_area :comment, rows: '5', size: '50',placeholder: "コメント入力" %>
-                  <%= f.submit "送信する",class:"btn btn-primary m-3" %>
-                <% end %>
+                 <% if current_user %>
+                  <%= form_with model: [:public, @article, @comment] do |f| %>
+                    <%= f.text_area :comment, rows: '5', size: '50',placeholder: "コメント入力" %>
+                    <%= f.submit "送信する",class:"btn btn-primary m-3" %>
+                  <% end %>
+                 <% end%>
               </div>
                      
               <div class = "row">
@@ -151,12 +157,12 @@
                         <% end %>
                       </div>
                       <div class  = "col-sm-12 col-mg-9 col-lg-8">
-                          <%= comment.user.full_name %><%= comment.created_at.strftime('%Y/%m/%d') %><br>
+                          <p><%= comment.user.full_name %> &thinsp; <%= comment.created_at.strftime('%Y/%m/%d') %></p>
                           <%= comment.comment %><br>
                           <!--投稿しているユーザーと今ログインしているユーザーの確認。削除の有無確認-->
-                        <% if comment.user == current_user %>
-                          <%= link_to "削除", public_article_comment_path(comment.article, comment), method: :delete %>
-                        <% end %>
+                          <% if comment.user == current_user %>
+                            <%= link_to "削除", public_article_comment_path(comment.article, comment), method: :delete %>
+                          <% end %>
                       </div>
                     </div>
                   </div>
