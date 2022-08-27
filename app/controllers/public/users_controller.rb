@@ -9,9 +9,6 @@ class Public::UsersController < ApplicationController
     @user = current_user
   end
   
-  def index
-  end
-  
   def create
   end
   
@@ -23,8 +20,6 @@ class Public::UsersController < ApplicationController
       render :edit
     end
   end
-  
-  
   
   def confirmation
   end

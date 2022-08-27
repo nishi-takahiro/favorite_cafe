@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     patch 'withdraw' => 'users#withdraw'
     get 'search' => "searches#search"
     resources :users
+    resources :user_article, only: [:show]
     resources :stores do
       resources :articles
     end
@@ -37,7 +38,7 @@ Rails.application.routes.draw do
   end
   
   namespace :admin do
-    resources :users
+    resources :users, only: [:index, :show, :edit, :update]
     resources :articles do
         resources :comments, only: [:create, :destroy]
     end
