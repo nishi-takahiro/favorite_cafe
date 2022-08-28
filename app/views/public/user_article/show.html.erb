@@ -15,6 +15,7 @@
         
         <!--ユーザーの投稿一覧-->
         <div class = "col-sm-12 col-md-8 col-lg-8">
+          <h6>投稿一覧</h6>
             <% @user_articles.each do |articles| %>
                 <div class = "row m-1 border-top">
                     <div class = "col-sm-12 col-md-4 col-lg-2">
@@ -33,13 +34,13 @@
                           <% end %>
                         </div>
                         <div class = "row">
-                         店名 : <%= articles.store_name %>
+                           店名 : <%= articles.store_name %>
                         </div>
                         <div class = "row">
-                         紹介文 : <%= articles.store_comment %>
+                           紹介文 : <%= articles.store_comment %>
                         </div>
                         <div class = "row">
-                         美味しさ : <div id="rate_delicious<%= articles.id%>"></div>
+                          美味しさ : <div id="rate_delicious<%= articles.id%>"></div>
                           <script>
                             $('#rate_delicious<%= articles.id%>').raty({
                               size      : 36,
@@ -53,7 +54,7 @@
                           </script>
                         </div>
                         <div class = "row">
-                         雰囲気 : <div id="rate_atmospher<%= articles.id%>"></div>
+                           雰囲気 : <div id="rate_atmospher<%= articles.id%>"></div>
                             <script>
                                 $('#rate_atmospher<%= articles.id%>').raty({
                                   size      : 36,
@@ -67,7 +68,7 @@
                             </script>
                         </div>
                         <div class = "row">
-                         コストパフォーマンス : <div id="rate_cost<%= articles.id%>"></div>
+                           コストパフォーマンス : <div id="rate_cost<%= articles.id%>"></div>
                             <script>
                                 $('#rate_cost<%= articles.id%>').raty({
                                   size      : 36,
@@ -81,10 +82,11 @@
                           </script>
                         </div>
                  
-                </div>
-            </div> 
+                  </div>
+              </div> 
              <% end %>   
              <%= paginate @user_articles %>
         </div>
+        
     </div>
 </div>
