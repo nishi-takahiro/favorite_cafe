@@ -14,7 +14,9 @@
       </div>
       
     <div class = "row">
-        <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold"></div>
+        <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold">
+          <h4>新規投稿</h4>
+        </div>
     </div>
     
     <%= form_with model: [:public, @store, @article],url: public_store_articles_path, method: :post do |f| %>

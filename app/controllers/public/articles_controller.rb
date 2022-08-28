@@ -8,9 +8,15 @@ class Public::ArticlesController < ApplicationController
     @result = JSON.parse(json)
     @result_data = JSON.parse(json, symbolize_names: true)
     @result_data1 = @result_data[:results][:shop][0]
-    @article.store_name = @result_data1[:name]
-    @article.address = @result_data1[:address]
+    # 店舗検索をかけた時に情報が取れない時は、再度検索をする
+    if @result_data1.nil?
+      redirect_to new_public_store_path, notice: "お店が見つかりませんでした。もう一度検索をしてください"
+    else 
+      @article.store_name = @result_data1[:name]
+      @article.address = @result_data1[:address]
+   end
   end
+
 
   def show
     @store = Store.find(params[:store_id])

@@ -2,7 +2,7 @@ class Comment < ApplicationRecord
     belongs_to :user
     belongs_to :article
     
-    validates :comment, length: { maximum: 800}
+    validates :comment, length: { minimum: 1,maximum: 800}, presence: true
     
   def self.looks(search, word)
     if search == "perfect_match"
