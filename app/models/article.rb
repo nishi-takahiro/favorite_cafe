@@ -32,7 +32,7 @@ class Article < ApplicationRecord
   # searchの検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
-      @article = Article.where(['store_comment LIKE(?) OR store_name LIKE(?) OR address LIKE(?)', "#{word}", "#{word}" "#{word}"])
+      @article = Article.where(['store_comment LIKE(?) OR store_name LIKE(?) OR address LIKE(?)', "#{word}", "#{word}","#{word}"])
     elsif search == "forward_match"
       @article = Article.where(['store_comment LIKE(?) OR store_name LIKE(?) OR address LIKE(?)',"#{word}%", "#{word}%", "#{word}%"])
     elsif search == "backward_match"

@@ -2,25 +2,21 @@
     <!--ユーザーのプロフィール情報-->
     <div class = "row">
         <div class = "col-sm-12 col-md-2 col-lg-2 mt-1 mb-1", style="background-color: #ffe4c4;">
-          <div class = "m-2 font-weight-bold">マイページ</div>
+          <div class = "m-2 font-weight-bold"><%= @user.last_name %><%= @user.first_name %>さんのページ</div>
              <% if @user.profile_image.attached? %>
              <%= image_tag @user.profile_image, size: "100x100" %>
              <% else %>
              <%= image_tag "no_image.jpg", size: "100x100" %>
              <% end %>
-             <div class = "row">
-                 <%= @user.last_name %><%= @user.first_name %>
-             </div>
         </div>
         
         <!--ユーザーの投稿一覧-->
         <div class = "col-sm-12 col-md-8 col-lg-8">
-          <h6>投稿一覧</h6>
+          <h6><%= @user.last_name %>さんの投稿</h6>
             <% @user_articles.each do |articles| %>
                 <div class = "row m-1 border-top">
                     <div class = "col-sm-12 col-md-4 col-lg-2">
                       <div class = "row mt-1">
-                         <%= link_to public_store_article_path([articles.store], [articles]) do %>
                              <% if articles.store_image.attached? %>
                                <%= image_tag articles.store_image, size: "100x100" %>
                              <% else %>
@@ -31,10 +27,12 @@
                     <div class = "col-sm-12 col-md-4 col-lg-6 small">
                         <div class = "row">
                           投稿日 : <%= articles.created_at.strftime('%Y/%m/%d') %>
-                          <% end %>
                         </div>
                         <div class = "row">
-                           店名 : <%= articles.store_name %>
+                               店名 :
+                            <%= link_to public_store_article_path([articles.store], [articles]) do %>
+                               <%= articles.store_name %>
+                            <% end %>
                         </div>
                         <div class = "row">
                            紹介文 : <%= articles.store_comment %>

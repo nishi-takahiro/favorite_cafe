@@ -8,7 +8,6 @@
             <div class = "col-sm-12 col-md-4 col-lg-3">
               <div class = "row m-1">
                  <%= link_to public_store_article_path([articles.store], [articles]) do %>
-                     <%= articles.id %>
                      <% if articles.store_image.attached? %>
                        <%= image_tag articles.store_image, size: "200x200" %>
                      <% else %>
@@ -32,7 +31,7 @@
                 </div>
                 <div class = "row">
                     <div class = "col-sm-12 col-md-4 col-lg-2 small">店名</div>
-                    <div class = "col-sm-12 col-md-4 col-lg-4">
+                    <div class = "col-sm-12 col-md-4 col-lg-7">
                       <%= link_to public_store_article_path([articles.store], [articles]) do %>
                        <%= articles.store_name %>
                       <% end %>
@@ -40,7 +39,7 @@
                 </div>
                 <div class = "row">
                     <div class = "col-sm-12 col-md-4 col-lg-2 small">紹介文</div>
-                    <div class = "col-sm-12 col-md-4 col-lg-4">
+                    <div class = "col-sm-12 col-md-4 col-lg-7">
                       <%= articles.store_comment %>
                     </div>
                 </div>

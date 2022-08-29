@@ -13,10 +13,14 @@
 
   <body>
     <header>
-      <nav class = "navbar navbar-expand-lg navbar-dark", style="background-color: #ffe4c4;">
+      <nav class = "navbar navbar-expand-lg navbar-dark", style="background-color: #CB914C;">
           
           
-            <a class = "rogo_image"><%= link_to image_tag('no_image.jpg'),root_path %></a>
+            <a class = "rogo_image">
+            <%= link_to root_path do %>
+            <%= image_tag 'favorite_cafe.png',  size: "170x100" %>
+            <% end %>
+            </a>
           
            <ul class = "navbar-nav ml-auto m-2">
              <!--ユーザーや管理者がログインをしているか確認-->
@@ -102,7 +106,7 @@
       <%= yield %>
     </main>
     
-    <footer style="background-color: #ffe4c4;">
+    <footer style="background-color: #CB914C;">
       <div class = "row d-flex align-items-center justify-content-center">
         Powered by <a href="http://webservice.recruit.co.jp/">ホットペッパー Webサービス</a>
       </div> 

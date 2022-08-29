@@ -1,6 +1,3 @@
-<h1>Public::Articles#edit</h1>
-<p>Find me in app/views/public/articles/edit.html.erb</p>
-
 
 <div class = "container">
      <div class = "row">
@@ -16,7 +13,9 @@
         </div>
       </div>
     <div class = "row">
-        <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold">投稿編集</div>
+        <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold">
+            <h4>投稿編集</h4>
+        </div>
     </div>
     
     <%= form_with model: [:public, @store, @article], url: public_store_article_path([@store], [@article]) do |f| %>
