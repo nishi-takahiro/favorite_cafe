@@ -18,7 +18,7 @@
           
             <a class = "rogo_image">
             <%= link_to root_path do %>
-            <%= image_tag 'favorite_cafe.png',  size: "170x100" %>
+            <%= image_tag 'favorite_cafe.png',  size: "140x70" %>
             <% end %>
             </a>
           
@@ -80,6 +80,9 @@
                   <% end %>
                 </li>
               <% else %>
+                <li>
+                  <%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, method: :post, class: "nav-link text-dark" %>
+                </li>
                 <li>
                   <%= link_to about_path, class: "nav-link text-dark" do %>
                   <i class = "fas fa-link"></i>About
