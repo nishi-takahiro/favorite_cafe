@@ -4,34 +4,34 @@
     <div class = "col-sm-12 col-md-12 col-lg-12 ">
       <h4 class = "m-3">ログイン</h4>
       
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class = "row m-2">
-        <div class="field">
-          <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class = "row m-2">
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
         </div>
-      </div>
-      <div class = "row m-2">
-       <div class="field">
-          <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
-       </div>
-      </div>
-      <div class = "row m-2">
-       <div class="actions">
-          <%= f.submit "Log in" , class:"btn btn-success btn-block" %>
+        <div class = "row m-2">
+         <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password" %>
+         </div>
         </div>
-        <% end %>
-      </div>
-      <div class = "row m-2">
+        <div class = "row m-2">
+         <div class="actions">
+            <%= f.submit "Log in" , class:"btn btn-success btn-block" %>
+          </div>
+          <% end %>
+        </div>
         
-        <%= render "public/shared/links" %>
-      </div>
-      
-      <div class = "row m-2">
-        <%= link_to "管理者の方はこちらから",new_admin_session_path %>
-      </div>
-  
+        <div class = "row m-2">
+          <%= render "public/shared/links" %>
+        </div>
+        
+        <div class = "row m-2">
+          <%= link_to "管理者の方はこちらから",new_admin_session_path %>
+        </div>
+    
     </div>
   </div>
 </div>

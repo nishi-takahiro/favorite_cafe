@@ -1,4 +1,5 @@
 class Public::SearchesController < ApplicationController
+ before_action :authenticate_admin!
     
  def search
   if params[:search].present?
@@ -16,10 +17,7 @@ class Public::SearchesController < ApplicationController
    articles = @tag.articles.order(created_at: :desc)
    @article = Kaminari.paginate_array(articles).page(params[:page]).per(10)
   else
-   # articles = Article.all.order(created_at: :desc)
-   # @tag_article = Kaminari.paginate_array(articles).page(params[:page]).per(10)
   end
-   # @tag_lists = Tag.all
  end
 
 end

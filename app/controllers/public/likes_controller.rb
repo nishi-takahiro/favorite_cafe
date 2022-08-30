@@ -1,4 +1,5 @@
 class Public::LikesController < ApplicationController
+  before_action :authenticate_admin!
 
   def create
     # articleに紐づけられたstoreのデータをとってくる

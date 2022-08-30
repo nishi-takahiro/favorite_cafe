@@ -6,6 +6,7 @@ class User < ApplicationRecord
          
   # ユーザー画像
   has_one_attached :profile_image
+  
   has_many :likes, dependent: :destroy
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -30,7 +31,7 @@ def full_name
   last_name  + " " +  first_name
 end
 
-# searchの検索方法分岐検索方法分岐
+# searchの検索方法分岐
 # ユーザーの名前、カナで検索できるようになっている。
  def self.looks(search, word)
     if search == "perfect_match"

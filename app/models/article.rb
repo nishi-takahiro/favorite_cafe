@@ -17,14 +17,15 @@ class Article < ApplicationRecord
     validates :address, length: { maximum: 500 }
     validates :store_comment, length: { maximum:2000 }, presence: true
     # 5段階評価
+    # 美味しさ
     validates :rate_delicious, numericality: {
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1}, presence: true
-    
+    # 雰囲気
     validates :rate_atmospher, numericality: {
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1}, presence: true
-    
+    # コストパフォーマンス
     validates :rate_cost, numericality: {
     less_than_or_equal_to: 5,
     greater_than_or_equal_to: 1}, presence: true

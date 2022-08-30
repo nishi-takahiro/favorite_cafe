@@ -9,8 +9,6 @@ class Public::UsersController < ApplicationController
     @user = current_user
   end
   
-  def create
-  end
   
   def update
     @user = current_user

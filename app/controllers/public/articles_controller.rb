@@ -1,4 +1,6 @@
 class Public::ArticlesController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
+  
   def new
     @store = Store.find(params[:store_id])
     @article = @store.articles.new

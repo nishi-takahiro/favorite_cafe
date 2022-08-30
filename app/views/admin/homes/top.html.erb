@@ -3,9 +3,9 @@
     <div class = "row "><%= notice %></div>
     <div clss = "row">
       <div class = "col-sm-12 col-md-12 col-lg-12">
-       <!--全ユーザーの投稿一覧、新しい投稿順に並んでいる-->
-       <%= render 'admin/template/article_index', articles: @articles %>
-        <div class = "m-4"><%= paginate @articles %></div>
+         <!--全ユーザーの投稿一覧、新しい投稿順に並んでいる-->
+         <%= render 'admin/template/article_index', articles: @articles %>
+         <div class = "m-4"><%= paginate @articles %></div>
       </div>
     </div> 
 </div>

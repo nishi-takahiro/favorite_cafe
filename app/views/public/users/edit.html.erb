@@ -1,93 +1,93 @@
 <div class = "container">
-      <div class = "row">
-        <div class = "col-sam-12 col-md-12 col-lg-12">
-          <% if @user.errors.any? %>
-          <h4><%= @user.errors.count %>件のエラーが発生しました</h4>
-          <ul>
-            <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
-          </ul>
-          <% end %>
+          <div class = "row">
+            <div class = "col-sam-12 col-md-12 col-lg-12">
+              <% if @user.errors.any? %>
+              <h4><%= @user.errors.count %>件のエラーが発生しました</h4>
+              <ul>
+                <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+              </ul>
+              <% end %>
+            </div>
+          </div>
+          
+        <div class = "row m-1">
+            <div class = "col-sm-12 col-md-12 col-lg-12 font-weight-bold">
+            　ユーザー情報編集
+            </div>
         </div>
-      </div>
-      
-    <div class = "row m-1">
-        <div class = "col-sm-12 col-md-12 col-lg-12 font-weight-bold">
-        　ユーザー情報編集
-        </div>
-    </div>
-    <%= form_with model: @user, url: public_users_my_page_path, method: :patch do |f| %>
-    <div class = "row">
-        <div class = "col-sm-12 col-md-4 col-lg-2">
-            ユーザー画像
-        </div>
-        <div class = "col-sm-6 col-md-4 col-lg-3">
-            <div class = "form-group">
-                <div class = "field">
-                    <%= f.file_field :profile_image, accept: "image/*" %>
+        <%= form_with model: @user, url: public_users_my_page_path, method: :patch do |f| %>
+        <div class = "row">
+            <div class = "col-sm-12 col-md-4 col-lg-2">
+                ユーザー画像
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+                <div class = "form-group">
+                    <div class = "field">
+                        <%= f.file_field :profile_image, accept: "image/*" %>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class = "row">
-        <div class = "col-sm-12 col-md-4 col-lg-2">
-            名前
-        </div>
-        <div class = "col-sm-6 col-md-4 col-lg-3">
-            <div class = "form-group">
-                <div class = "field">
-                   <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+        <div class = "row">
+            <div class = "col-sm-12 col-md-4 col-lg-2">
+                名前
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+                <div class = "form-group">
+                    <div class = "field">
+                       <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+                    </div>
+                </div>
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+                <div class = "form-group">
+                    <div class = "field">
+                         <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class = "col-sm-6 col-md-4 col-lg-3">
-            <div class = "form-group">
-                <div class = "field">
-                     <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+        <div class = "row">
+             <div class = "col-sm-12 col-md-4 col-lg-2">
+                フリガナ
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+                <div class = "form-group">
+                    <div class = "field">
+                       <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+                    </div>
+                </div>
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+                <div class = "form-group">
+                    <div class = "field">
+                         <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class = "row">
-         <div class = "col-sm-12 col-md-4 col-lg-2">
-            フリガナ
-        </div>
-        <div class = "col-sm-6 col-md-4 col-lg-3">
-            <div class = "form-group">
-                <div class = "field">
-                   <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana" %>
+         <div class = "row">
+             <div class = "col-sm-12 col-md-4 col-lg-2">
+                メールアドレス
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+                <div class = "form-group">
+                    <div class = "field">
+                        <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class = "col-sm-6 col-md-4 col-lg-3">
-            <div class = "form-group">
-                <div class = "field">
-                     <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana" %>
+         </div>
+            <div class = "row m-2">
+                <div class = "col-sm-6 col-md-3 col-lg-2">
+                    <%= f.submit "保存", class: "btn btn-success" %>
+                </div>
+                <div class = "col-sm-6 col-md-3 col-lg-2">
+                    <%= link_to "退会する", public_users_confirmation_path, class: "btn btn-danger" %>
                 </div>
             </div>
-        </div>
-    </div>
-     <div class = "row">
-         <div class = "col-sm-12 col-md-4 col-lg-2">
-            メールアドレス
-        </div>
-        <div class = "col-sm-6 col-md-4 col-lg-3">
-            <div class = "form-group">
-                <div class = "field">
-                    <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
-                </div>
-            </div>
-        </div>
-     </div>
-        <div class = "row m-2">
-            <div class = "col-sm-6 col-md-3 col-lg-2">
-                <%= f.submit "保存", class: "btn btn-success" %>
-            </div>
-            <div class = "col-sm-6 col-md-3 col-lg-2">
-                <%= link_to "退会する", public_users_confirmation_path, class: "btn btn-danger" %>
-            </div>
-        </div>
-    
-    <% end %>
+        
+        <% end %>
 </div>

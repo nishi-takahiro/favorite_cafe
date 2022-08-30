@@ -3,12 +3,12 @@
      <div class = "row">
         <div class = "col-sam-12 col-md-12 col-lg-12">
           <% if @article.errors.any? %>
-          <h4><%= @article.errors.count %>件のエラーが発生しました</h4>
-          <ul>
-            <% @article.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-            <% end %>
-          </ul>
+              <h4><%= @article.errors.count %>件のエラーが発生しました</h4>
+              <ul>
+                <% @article.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+              </ul>
           <% end %>
         </div>
       </div>
@@ -22,21 +22,21 @@
     <%= form_with model: [:public, @store, @article],url: public_store_articles_path, method: :post do |f| %>
         <div class = "row ml-2 m-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">投稿画像</div>
-                <div class = "col-sm-7 col-md-6 col-lg-6">
-                    <%= f.file_field :store_image, accept: "image/*" %>
-                </div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                <%= f.file_field :store_image, accept: "image/*" %>
+            </div>
         </div>
         <div class = "row ml-2 m-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">お店の名前</div>
-                <div class = "col-sm-7 col-md-6 col-lg-6">
-                    <%= f.text_field :store_name %>
-                </div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                <%= f.text_field :store_name %>
+            </div>
         </div>
         <div class = "row ml-2 m-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">お店の住所</div>
-                <div class = "col-sm-7 col-md-6 col-lg-6">
-                    <%= f.text_field :address %>
-                </div>
+            <div class = "col-sm-7 col-md-6 col-lg-6">
+                <%= f.text_field :address %>
+            </div>
         </div>
         <div class = "row ml-2">
             <div class = "col-sm-3 col-md-4 col-lg-3"><%= f.label :rate_delicious,'美味しさ' %></div>
@@ -64,21 +64,21 @@
         </div>
         <div class = "row ml-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">紹介文</div>
-                <div class = "col-sm-7 col-md-7 col-lg-7 ml-2">
-                    <%= f.text_area :store_comment , rows:'5', placeholder: "コメント", class: "form-control form-control-sm"%>
-                </div>
+            <div class = "col-sm-7 col-md-7 col-lg-7 ml-2">
+                <%= f.text_area :store_comment , rows:'5', placeholder: "コメント", class: "form-control form-control-sm"%>
+            </div>
         </div>
         <!--タグ付けに関する記述-->
          <div class = "row ml-2 m-2">
             <div class = "col-sm-3 col-md-4 col-lg-3">タグ付け</div>
-                <div class = "col-sm-7 col-md-7 col-lg-7 ml-2">
-                     <%= f.text_field :tag, placeholder:",(カンマ)で区切ってください" %>
-                </div>
+            <div class = "col-sm-7 col-md-7 col-lg-7 ml-2">
+                 <%= f.text_field :tag, placeholder:",(カンマ)で区切ってください" %>
+            </div>
         </div>
-   <div class = "row m-2">
-     <%= f.submit "投稿する", class: "btn btn-success" %>
-     <% end %>
-   </div>
+       <div class = "row m-2">
+         <%= f.submit "投稿する", class: "btn btn-success" %>
+         <% end %>
+       </div>
    
  </div>
 

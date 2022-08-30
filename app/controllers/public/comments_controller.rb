@@ -1,4 +1,5 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_admin!
     
   def create
     @article = Article.find(params[:article_id])

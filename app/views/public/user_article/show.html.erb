@@ -12,16 +12,16 @@
         
         <!--ユーザーの投稿一覧-->
         <div class = "col-sm-12 col-md-8 col-lg-8">
-          <h6><%= @user.last_name %>さんの投稿</h6>
+         　 <h6><%= @user.last_name %>さんの投稿</h6>
             <% @user_articles.each do |articles| %>
                 <div class = "row m-1 border-top">
                     <div class = "col-sm-12 col-md-4 col-lg-2">
                       <div class = "row mt-1">
-                             <% if articles.store_image.attached? %>
-                               <%= image_tag articles.store_image, size: "100x100" %>
-                             <% else %>
-                               <%= image_tag "store-no-image.jpg", size: "100x100" %>
-                             <% end %>
+                         <% if articles.store_image.attached? %>
+                           <%= image_tag articles.store_image, size: "100x100" %>
+                         <% else %>
+                           <%= image_tag "store-no-image.jpg", size: "100x100" %>
+                         <% end %>
                        </div> 
                     </div>
                     <div class = "col-sm-12 col-md-4 col-lg-6 small">
@@ -82,8 +82,8 @@
                  
                   </div>
               </div> 
-             <% end %>   
-             <%= paginate @user_articles %>
+            <% end %>   
+            <%= paginate @user_articles %>
         </div>
         
     </div>

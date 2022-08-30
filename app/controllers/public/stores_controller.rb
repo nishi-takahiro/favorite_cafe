@@ -1,4 +1,6 @@
 class Public::StoresController < ApplicationController
+  before_action :authenticate_admin!
+  
   require 'net/http'
   require 'uri'
   require 'json'
@@ -6,12 +8,6 @@ class Public::StoresController < ApplicationController
 
   def new
    @store = Store.new
-  end
-
-  def edit
-  end
-
-  def index
   end
 
   def show

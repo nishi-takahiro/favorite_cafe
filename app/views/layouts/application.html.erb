@@ -81,7 +81,9 @@
                 </li>
               <% else %>
                 <li>
-                  <%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, method: :post, class: "nav-link text-dark" %>
+                  <%= link_to guests_guest_sign_in_path, method: :post, class: "nav-link text-dark" do %>
+                  <i class="fas fa-user-friends"></i>ゲストログイン（閲覧用）
+                  <% end %>
                 </li>
                 <li>
                   <%= link_to about_path, class: "nav-link text-dark" do %>
