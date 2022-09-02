@@ -1,5 +1,5 @@
 class Public::StoresController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_user!
   
   require 'net/http'
   require 'uri'

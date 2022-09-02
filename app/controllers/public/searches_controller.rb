@@ -1,5 +1,5 @@
 class Public::SearchesController < ApplicationController
- before_action :authenticate_admin!
+ before_action :authenticate_user!
     
  def search
   if params[:search].present?
