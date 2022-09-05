@@ -30,7 +30,7 @@ class Public::ArticlesController < ApplicationController
 
   def index
     begin
-      @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20)
+      @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20) if params[:page].present?
     rescue StandardError => e
       redirect_to new_public_store_path, notice: e.message
     end
