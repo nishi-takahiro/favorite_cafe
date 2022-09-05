@@ -29,10 +29,12 @@ class Public::ArticlesController < ApplicationController
   end
 
   def index
-      @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20)
-      if (params[:page]).present?
-      redirect_to new_public_store_path
+    begin
+      @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20) if (params[:page]).present?
+    rescue
+
     end
+    redirect_to new_public_store_path
   end
 
   def edit
