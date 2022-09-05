@@ -29,7 +29,11 @@ class Public::ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20)
+    begin
+      @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20)
+    rescue StandardError => e
+      redirect_to new_public_store_path, notice: e.message
+    end
   end
 
   def edit
