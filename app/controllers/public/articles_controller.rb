@@ -30,7 +30,7 @@ class Public::ArticlesController < ApplicationController
 
   def index
     begin
-      @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20) if @article.present?
+      @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20)
     rescue
      redirect_to new_public_store_path, notice: "新規投稿を作成してください。"
     end
