@@ -34,7 +34,7 @@ class Public::ArticlesController < ApplicationController
     rescue
 
     end
-    redirect_to new_public_store_path
+    redirect_to new_public_store_path, notice: 投稿が無いので新規投稿を作成してください。
   end
 
   def edit
