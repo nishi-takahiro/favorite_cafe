@@ -5,8 +5,8 @@ class Admin::HomesController < ApplicationController
       # 全投稿を新しい順番に表示をする
       @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20)
     rescue
-
+      redirect_to root
     end
-    redirect_to root
+
   end
 end
