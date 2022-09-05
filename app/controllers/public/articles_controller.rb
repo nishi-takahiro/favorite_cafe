@@ -29,10 +29,9 @@ class Public::ArticlesController < ApplicationController
   end
 
   def index
-    begin
-      @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20) if params[:page].present?
-    rescue StandardError => e
-      redirect_to new_public_store_path, notice: e.message
+      @articles = Article.all.order(created_at: :desc).page(params[:page]).per(20)
+      if (params[:page]).present?
+      redirect_to new_public_store_path
     end
   end
 
