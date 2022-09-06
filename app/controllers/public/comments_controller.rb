@@ -1,6 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!
-    
+
   def create
     @article = Article.find(params[:article_id])
     #アーティクルがストアにネストしており、アーティクルからストアの情報をがとれるのでstore.idをとるための準備
@@ -10,11 +10,11 @@ class Public::CommentsController < ApplicationController
     @comment.save
     redirect_to public_store_article_path(@store.id, params[:article_id] )
   end
-  
+
   def destroy
     @article = Article.find(params[:article_id])
     @store = @article.store
-    @comment = Comment.find_by(user_id: current_user.id, article_id: params[:article_id])
+    @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_to public_store_article_path(@store.id, params[:article_id] )
   end

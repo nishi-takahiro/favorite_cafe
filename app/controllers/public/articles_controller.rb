@@ -46,7 +46,7 @@ class Public::ArticlesController < ApplicationController
   def create
     store = Store.find(params[:store_id])
     @article = current_user.articles.new(article_params)
-    tags = params[:article][:tag].split(/[、|,]/)
+    tags = params[:article][:tag].split(/[、|,|，]/)
     @article.store_id = store.id
     if @article.save
        @article.save_tags(tags)
@@ -59,7 +59,7 @@ class Public::ArticlesController < ApplicationController
   def update
     @store = Store.find(params[:store_id])
     @article = current_user.articles.find(params[:id])
-    tags = params[:article][:tag].split(/[、|,]/)
+    tags = params[:article][:tag].split(/[、|,|，]/)
     if @article.update(article_params)
        @article.save_tags(tags)
          redirect_to public_store_article_path([@store], [@article])

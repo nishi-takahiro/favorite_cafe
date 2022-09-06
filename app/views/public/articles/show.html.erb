@@ -2,7 +2,7 @@
   <div class = "container">
       <div class = "row">
           <div class = "col-sm-12 col-mg-12 col-lg-12 px-sm-0">
-            
+
               <h5 class = "col-lg-3 m-3 font-weight-bold">
                 投稿詳細
               </h5>
@@ -26,7 +26,7 @@
                     </div>
                   <% end %>
                 </div>
-                  
+
                   <div class = "row">
                     <div class = "col-sm-12 col-mg-8 col-lg-7">
                       <table class = "table table-bordered">
@@ -130,8 +130,8 @@
                           <% end %>
                         <% end %>
                      </div>
-                  </div>       
-               </div> 
+                  </div>
+               </div>
                <!--コメント機能-->
               <div class - "row">
                  <% if current_user %>
@@ -141,20 +141,20 @@
                   <% end %>
                  <% end%>
               </div>
-                     
+
               <div class = "row">
                   <div class  = "col-sm-12 col-mg-12 col-lg-12 mb-1">
                     コメント件数：<%= @article.comments.count %>
                   </div>
                   <% @article.comments.each do |comment| %>
                   <div class  = "col-sm-12 col-mg-12 col-lg-12">
-                    <div class = "row border-top"> 
+                    <div class = "row border-top">
                       <div class  = "mt-2 mb-2 col-sm-12 col-mg-4 col-lg-2">
                         <!--コメント投稿をしたユーザー情報-->
                         <% if comment.user. profile_image.attached? %>
                           <%= image_tag comment.user.profile_image, size: "100x100" %>
                         <% else %>
-                          <%= image_tag "store-no-image.jpg", size: "100x100" %>
+                          <%= image_tag "no_image.jpg", size: "100x100" %>
                         <% end %>
                       </div>
                       <div class  = "col-sm-12 col-mg-9 col-lg-8">
@@ -167,7 +167,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
                 <% end %>
               </div>
 

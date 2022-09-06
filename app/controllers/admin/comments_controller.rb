@@ -1,10 +1,10 @@
 class Admin::CommentsController < ApplicationController
    before_action :authenticate_admin!
-    
+
    def destroy
     @article = Article.find(params[:article_id])
     @store = @article.store
-    @comment = Comment.find_by(article_id: params[:article_id])
+    @comment = Comment.find(params[:id])
     @comment.destroy
     redirect_to admin_article_path(params[:article_id] )
   end

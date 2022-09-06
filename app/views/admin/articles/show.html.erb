@@ -17,7 +17,7 @@
                       <% end %>
                     </div>
                 </div>
-                  
+
                   <div class = "row">
                     <div class = "col-sm-12 col-mg-8 col-lg-7">
                       <table class = "table table-bordered">
@@ -106,9 +106,9 @@
                      <div class = "row">
                           <p>♥<%= @article.likes.count %> いいね</p>
                      </div>
-                  </div>       
-               </div> 
-                     
+                  </div>
+               </div>
+
               <div class = "row">
                   <div class  = "col-sm-12 col-mg-12 col-lg-12">
                     コメント件数：<%= @article.comments.count %>
@@ -116,12 +116,12 @@
                   <!--投稿に関するコメントを表示-->
                   <% @article.comments.each do |comment| %>
                   <div class  = "col-sm-12 col-mg-12 col-lg-12">
-                    <div class = "row"> 
+                    <div class = "row">
                       <div class  = "col-sm-12 col-mg-4 col-lg-2">
                         <% if comment.user. profile_image.attached? %>
                           <%= image_tag comment.user.profile_image, size: "100x100" %>
                         <% else %>
-                          <%= image_tag "store-no-image.jpg", size: "100x100" %>
+                          <%= image_tag "no_image.jpg", size: "100x100" %>
                         <% end %>
                       </div>
                       <div class  = "col-sm-12 col-mg-9 col-lg-8">
@@ -131,7 +131,7 @@
                       </div>
                     </div>
                   </div>
-                  
+
                 <% end %>
               </div>
 
