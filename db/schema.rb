@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 2022_08_11_140429) do
     t.float "lng"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "map"
   end
 
   create_table "tag_intermediates", force: :cascade do |t|
