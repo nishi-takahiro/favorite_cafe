@@ -49,8 +49,12 @@ class Public::ArticlesController < ApplicationController
     tags = params[:article][:tag].split(/[、|,|，]/)
     @article.store_id = store.id
     if @article.save
-       @article.save_tags(tags)
+  
+       if @article.save_tags(tags)
          redirect_to  public_store_article_path([store], [@article])
+        else
+         redirect_to new_public_store_article_path, notice: "タグは100文字以下の入力です。"
+        end
     else
       render :new
    end
