@@ -5,20 +5,20 @@
               <% if @article.errors.any? %>
               <h4><%= @article.errors.count %>件のエラーが発生しました</h4>
               <ul>
-                <% @article.errors.full_messages.each do |message| %>
+                <%  @article.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
                 <% end %>
               </ul>
               <% end %>
             </div>
           </div>
-          
+
         <div class = "row">
             <div class = "col-sm-3 col-md-4 col-lg-3 font-weight-bold">
                 <h4>投稿編集</h4>
             </div>
         </div>
-        
+
         <%= form_with model: [:public, @store, @article], url: public_store_article_path([@store], [@article]) do |f| %>
             <div class = "row ml-2 m-2">
                 <div class = "col-sm-3 col-md-4 col-lg-3"><%= f.label :store_image,'投稿画像' %></div>
@@ -74,7 +74,7 @@
                     <%= f.text_field :tag, size:60, value: @tags, autofocus: true, autocomplete: "tag" %>
                 </div>
             </div>
-    
+
        <div class = "row mb-3">
          <%= f.submit "編集内容を保存", class: "btn btn-success" %>
          <% end %>
@@ -94,8 +94,8 @@
     readOnly: false,
     half: true,
   });
-  </script>  
- <!--雰囲気の5段階評価--> 
+  </script>
+ <!--雰囲気の5段階評価-->
   <script>
   $('#rate_atmospher').raty({
     size     : 15,
@@ -107,7 +107,7 @@
     readOnly: false,
     half: true,
   });
-  </script>  
+  </script>
   <!--コストパフォーマンスの5段階評価-->
    <script>
   $('#rate_cost').raty({
@@ -120,4 +120,4 @@
     readOnly: false,
     half: true,
   });
-  </script>  
+  </script>
