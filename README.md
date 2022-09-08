@@ -37,7 +37,6 @@
 - O-DAN https://o-dan.net/ja/
 - Google API https://cloud.google.com/
 - hotpepper API https://webservice.recruit.co.jp/doc/hotpepper/
-サイト
 
 実装機能リスト
 https://docs.google.com/spreadsheets/d/1CB-hxQhpYBZC4jL9uJ7Aa0PzXZD7_mpepUPhpH7GG9c/edit?usp=sharing
