@@ -55,7 +55,7 @@ class Public::ArticlesController < ApplicationController
          redirect_to new_public_store_article_path, notice: "タグは50文字以下の入力です。"
         end
     else
-      redirect_to new_public_store_article_path
+       render 'new'
    end
   end
 
