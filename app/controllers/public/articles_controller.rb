@@ -52,7 +52,7 @@ class Public::ArticlesController < ApplicationController
        if @article.save_tags(tags)
          redirect_to  public_store_article_path([store], [@article])
         else
-         redirect_to new_public_store_article_path, notice: "タグは50文字以下の入力です。"
+         redirect_to new_public_store_article_path, notice: "タグ1つに50文字以下の入力です。"
         end
     else
        render 'new'

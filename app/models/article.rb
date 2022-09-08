@@ -72,12 +72,12 @@ class Article < ApplicationRecord
         end
       end
 
-    # 新しいタグを作っていく
+    #新しいタグを作っていく
     new_tags.each do |new|
       tag = Tag.find_by(tag: new.strip)
 
 
-　　# タグを作るときに存在している物はtrue、存在していないものはfalseにいき新しいタグを作る
+    #タグを作るときに存在している物はtrue、存在していないものはfalseにいき新しいタグを作る
       if tag
         tags << tag
       else
