@@ -7,8 +7,11 @@ class Public::CommentsController < ApplicationController
     @store = @article.store
     @comment = current_user.comments.new(comment_params)
     @comment.article_id = @article.id
-    @comment.save
-    redirect_to public_store_article_path(@store.id, params[:article_id] )
+    if @comment.save
+     redirect_to public_store_article_path(@store.id, params[:article_id] )
+    else
+     redirect_to public_store_article_path(@store.id, params[:article_id] ), notice: "コメントをもう一度投稿してください"
+    end
   end
 
   def destroy
